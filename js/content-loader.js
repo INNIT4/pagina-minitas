@@ -2,7 +2,7 @@ import { db, isConfigured } from './firebase-config.js';
 import { CLIENT_CONFIG } from '../config/client.js';
 import { formatLabel } from './config-loader.js';
 
-// Fallback data cuando no hay Firestore
+// ── FALLBACKS ─────────────────────────────────────────────────
 const FALLBACK = {
   hero: {
     texto_principal: CLIENT_CONFIG.tagline,
@@ -19,124 +19,80 @@ const FALLBACK = {
     { valor: 98,  sufijo: '%', etiqueta: 'Satisfacción' }
   ],
   eventos: CLIENT_CONFIG.nav_eventos.map(id => ({
-    id,
-    nombre: formatLabel(id),
+    id, nombre: formatLabel(id),
     descripcion: `Servicios especializados para tu ${formatLabel(id).toLowerCase()}.`,
     emoji: getEventEmoji(id)
   })),
   espacios: CLIENT_CONFIG.nav_espacios.map(id => ({
-    id,
-    nombre: formatLabel(id),
+    id, nombre: formatLabel(id),
     capacidad: '200–800 personas',
-    descripcion: `Espacio elegante y versátil para cualquier tipo de evento.`,
+    descripcion: 'Espacio elegante y versátil para cualquier tipo de evento.',
     emoji: '🏛️'
   })),
   testimonios: [
-    {
-      nombre: 'María González',
-      evento: 'Boda',
-      texto: 'Todo fue perfecto. El salón es hermoso y el servicio impecable. Definitivamente lo recomendaría para cualquier evento.',
-      estrellas: 5
-    },
-    {
-      nombre: 'Carlos Ramírez',
-      evento: 'Quinceaños',
-      texto: 'Mi hija tuvo la mejor fiesta de XV años. La atención del personal y la calidad de las instalaciones superaron nuestras expectativas.',
-      estrellas: 5
-    },
-    {
-      nombre: 'Empresa Construvida',
-      evento: 'Evento empresarial',
-      texto: 'Excelentes instalaciones para nuestro evento corporativo. La tecnología audiovisual y el servicio de catering fueron sobresalientes.',
-      estrellas: 5
-    }
+    { nombre: 'María González',   evento: 'Boda',              texto: 'Todo fue perfecto. El salón es hermoso y el servicio impecable.', estrellas: 5 },
+    { nombre: 'Carlos Ramírez',   evento: 'Quinceaños',        texto: 'Mi hija tuvo la mejor fiesta de XV años. La atención superó nuestras expectativas.', estrellas: 5 },
+    { nombre: 'Empresa Construvida', evento: 'Evento empresarial', texto: 'Excelentes instalaciones para nuestro evento corporativo.', estrellas: 5 }
   ],
   faq: [
-    { pregunta: '¿Con cuánta anticipación debo reservar?', respuesta: 'Recomendamos reservar con al menos 3–6 meses de anticipación para fechas populares. Sin embargo, contáctanos para verificar disponibilidad.' },
-    { pregunta: '¿El precio incluye decoración?', respuesta: 'Tenemos paquetes que incluyen decoración básica. También puedes contratar nuestros proveedores asociados para una decoración más elaborada.' },
-    { pregunta: '¿Puedo traer mi propio catering?', respuesta: 'Contamos con servicio de catering propio con distintos menús. También podemos trabajar con proveedores externos previamente aprobados.' },
-    { pregunta: '¿Cuál es la capacidad máxima del salón?', respuesta: 'Nuestro salón principal tiene capacidad para hasta 800 personas. Contamos con espacios más íntimos para eventos de menor tamaño.' },
-    { pregunta: '¿Ofrecen servicio de estacionamiento?', respuesta: 'Sí, contamos con amplio estacionamiento gratuito para todos los eventos.' }
+    { pregunta: '¿Con cuánta anticipación debo reservar?', respuesta: 'Recomendamos reservar con al menos 3–6 meses de anticipación para fechas populares.' },
+    { pregunta: '¿El precio incluye decoración?',          respuesta: 'Tenemos paquetes que incluyen decoración básica. También puedes contratar proveedores asociados.' },
+    { pregunta: '¿Puedo traer mi propio catering?',        respuesta: 'Contamos con servicio de catering propio. También trabajamos con proveedores externos previamente aprobados.' },
+    { pregunta: '¿Cuál es la capacidad máxima?',           respuesta: 'Nuestro salón principal tiene capacidad para hasta 800 personas.' },
+    { pregunta: '¿Ofrecen estacionamiento?',               respuesta: 'Sí, contamos con amplio estacionamiento gratuito para todos los eventos.' }
   ]
 };
 
-export async function loadContent() {
-  if (!isConfigured) {
-    applyFallbackContent();
-    return;
-  }
-
+// ── HELPERS ───────────────────────────────────────────────────
+async function firestoreGet(path) {
+  if (!isConfigured) return null;
   try {
-    const { doc, getDoc, collection, getDocs, query, where, orderBy } =
+    const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
+    const snap = await getDoc(doc(db, ...path.split('/')));
+    return snap.exists() ? snap.data() : null;
+  } catch { return null; }
+}
+
+async function firestoreCollection(col, ...queryArgs) {
+  if (!isConfigured) return null;
+  try {
+    const { collection, getDocs, query, orderBy, where } =
       await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
-
-    const [heroSnap, nosotrosSnap, statsSnap] = await Promise.all([
-      getDoc(doc(db, 'content', 'hero')),
-      getDoc(doc(db, 'content', 'nosotros')),
-      getDoc(doc(db, 'content', 'stats'))
-    ]);
-
-    const hero     = heroSnap.exists()     ? heroSnap.data()     : FALLBACK.hero;
-    const nosotros = nosotrosSnap.exists() ? nosotrosSnap.data() : FALLBACK.nosotros;
-    const stats    = statsSnap.exists()    ? statsSnap.data().items : FALLBACK.stats;
-
-    applyHeroContent(hero);
-    applyNosotrosContent(nosotros);
-    applyStats(stats);
-
-    // Cargar eventos y espacios en paralelo
-    const [eventosSnaps, espaciosSnaps, testimoniosSnaps, faqSnaps] = await Promise.all([
-      getDocs(collection(db, 'eventos')),
-      getDocs(collection(db, 'espacios')),
-      getDocs(query(collection(db, 'testimonios'), where('visible', '==', true))),
-      getDocs(query(collection(db, 'faq'), orderBy('orden')))
-    ]);
-
-    const eventos    = eventosSnaps.empty    ? FALLBACK.eventos    : eventosSnaps.docs.map(d => ({ id: d.id, ...d.data() }));
-    const espacios   = espaciosSnaps.empty   ? FALLBACK.espacios   : espaciosSnaps.docs.map(d => ({ id: d.id, ...d.data() }));
-    const testimonios = testimoniosSnaps.empty ? FALLBACK.testimonios : testimoniosSnaps.docs.map(d => d.data());
-    const faq        = faqSnaps.empty        ? FALLBACK.faq        : faqSnaps.docs.map(d => d.data());
-
-    renderEventos(eventos);
-    renderEspacios(espacios);
-    renderTestimonios(testimonios);
-    renderFAQ(faq);
-
-  } catch (err) {
-    console.warn('Firestore no disponible, usando datos de fallback.', err);
-    applyFallbackContent();
-  }
+    let q = collection(db, col);
+    if (queryArgs.length) q = query(q, ...queryArgs.map(a => {
+      if (a.type === 'orderBy') return orderBy(a.field, a.dir);
+      if (a.type === 'where')   return where(a.field, a.op, a.val);
+      return a;
+    }));
+    const snap = await getDocs(q);
+    return snap.empty ? null : snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  } catch { return null; }
 }
 
-function applyFallbackContent() {
-  applyHeroContent(FALLBACK.hero);
-  applyNosotrosContent(FALLBACK.nosotros);
-  applyStats(FALLBACK.stats);
-  renderEventos(FALLBACK.eventos);
-  renderEspacios(FALLBACK.espacios);
-  renderTestimonios(FALLBACK.testimonios);
-  renderFAQ(FALLBACK.faq);
-}
-
-function applyHeroContent(hero) {
+// ── EXPORTS INDIVIDUALES ──────────────────────────────────────
+export async function loadHero() {
+  const data = await firestoreGet('content/hero') || FALLBACK.hero;
   const title = document.getElementById('hero-title');
   const sub   = document.getElementById('hero-subtitle');
-  if (title && hero.texto_principal) title.textContent = hero.texto_principal;
-  if (sub   && hero.subtexto)        sub.textContent   = hero.subtexto;
+  if (title && data.texto_principal) title.textContent = data.texto_principal;
+  if (sub   && data.subtexto)        sub.textContent   = data.subtexto;
 }
 
-function applyNosotrosContent(nos) {
+export async function loadNosotros() {
+  const data = await firestoreGet('content/nosotros') || FALLBACK.nosotros;
   const title = document.getElementById('nosotros-title');
   const text  = document.getElementById('nosotros-text');
-  if (title && nos.titulo) title.textContent = nos.titulo;
-  if (text  && nos.texto)  text.textContent  = nos.texto;
-  const img = document.getElementById('about-img');
-  if (img && nos.imagen_url) img.src = nos.imagen_url;
+  const img   = document.getElementById('about-img');
+  if (title && data.titulo)     title.textContent = data.titulo;
+  if (text  && data.texto)      text.textContent  = data.texto;
+  if (img   && data.imagen_url) img.src           = data.imagen_url;
 }
 
-function applyStats(stats) {
-  const grid = document.getElementById('stats-grid');
-  if (!grid || !stats?.length) return;
+export async function loadStats() {
+  const data = await firestoreGet('content/stats');
+  const stats = data?.items || FALLBACK.stats;
+  const grid  = document.getElementById('stats-grid');
+  if (!grid) return;
   grid.innerHTML = stats.map((s, i) => `
     <div class="stat-card reveal ${i > 0 ? `reveal-delay-${i}` : ''}">
       <div class="stat-number" data-target="${s.valor}" data-sufijo="${s.sufijo || ''}">${s.valor}${s.sufijo || ''}</div>
@@ -145,11 +101,12 @@ function applyStats(stats) {
   `).join('');
 }
 
-function renderEventos(eventos) {
+export async function loadEventos() {
+  const data = await firestoreCollection('eventos') || FALLBACK.eventos;
   const grid = document.getElementById('eventos-grid');
   if (!grid) return;
-  grid.innerHTML = eventos.map(e => `
-    <div class="evento-card reveal">
+  grid.innerHTML = data.map(e => `
+    <div class="evento-card reveal" id="${e.id}">
       ${e.imagen_url
         ? `<img class="evento-img" src="${e.imagen_url}" alt="${e.nombre}" loading="lazy">`
         : `<div class="evento-img-placeholder">${e.emoji || '🎉'}</div>`
@@ -162,11 +119,12 @@ function renderEventos(eventos) {
   `).join('');
 }
 
-function renderEspacios(espacios) {
+export async function loadEspacios() {
+  const data = await firestoreCollection('espacios') || FALLBACK.espacios;
   const grid = document.getElementById('espacios-grid');
   if (!grid) return;
-  grid.innerHTML = espacios.map(e => `
-    <div class="espacio-card reveal">
+  grid.innerHTML = data.map(e => `
+    <div class="espacio-card reveal" id="${e.id}">
       <div class="espacio-img">
         ${e.imagen_url
           ? `<img src="${e.imagen_url}" alt="${e.nombre}" loading="lazy">`
@@ -187,10 +145,11 @@ function renderEspacios(espacios) {
   `).join('');
 }
 
-function renderTestimonios(testimonios) {
+export async function loadTestimonios() {
+  const data = await firestoreCollection('testimonios') || FALLBACK.testimonios;
   const grid = document.getElementById('testimonios-grid');
   if (!grid) return;
-  grid.innerHTML = testimonios.map(t => `
+  grid.innerHTML = data.map(t => `
     <div class="testimonio-card reveal">
       <div class="testimonio-stars">${'★'.repeat(t.estrellas || 5)}</div>
       <p class="testimonio-text">"${t.texto}"</p>
@@ -202,10 +161,11 @@ function renderTestimonios(testimonios) {
   `).join('');
 }
 
-function renderFAQ(items) {
+export async function loadFaq() {
+  const data = await firestoreCollection('faq') || FALLBACK.faq;
   const list = document.getElementById('faq-list');
   if (!list) return;
-  list.innerHTML = items.map((item, i) => `
+  list.innerHTML = data.map((item, i) => `
     <li class="faq-item">
       <button class="faq-question" aria-expanded="false" data-faq="${i}">
         <span>${item.pregunta}</span>
@@ -216,6 +176,19 @@ function renderFAQ(items) {
       </div>
     </li>
   `).join('');
+}
+
+// ── CARGA COMPLETA (index.html) ───────────────────────────────
+export async function loadContent() {
+  await Promise.all([
+    loadHero(),
+    loadNosotros(),
+    loadStats(),
+    loadEventos(),
+    loadEspacios(),
+    loadTestimonios(),
+    loadFaq()
+  ]);
 }
 
 function getEventEmoji(id) {

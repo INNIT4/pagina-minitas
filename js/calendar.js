@@ -12,8 +12,8 @@ export function initCalendar() {
   const section = document.getElementById('disponibilidad');
 
   if (!isConfigured) {
-    // Sin Firebase: ocultar sección de disponibilidad
-    if (section) section.hidden = true;
+    // Sin Firebase: mostrar calendario sin fechas bloqueadas
+    renderCalendar();
     return;
   }
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disponibilidad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- ══ PAGE HERO ════════════════════════════════════════════ -->
+  <div class="page-hero">
+    <span class="page-hero-label">Agenda tu fecha</span>
+    <h1 class="page-hero-title">Disponibilidad</h1>
+    <p class="page-hero-subtitle">Verifica si tu fecha está disponible antes de cotizar.</p>
+  </div>
+
+  <!-- ══ CALENDARIO ══════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="calendar-wrap">
+        <div class="calendar-header">
+          <button class="calendar-nav-btn" id="cal-prev" aria-label="Mes anterior">&#8249;</button>
+          <span class="calendar-month" id="cal-month-label">Marzo 2026</span>
+          <button class="calendar-nav-btn" id="cal-next" aria-label="Mes siguiente">&#8250;</button>
+        </div>
+        <div class="calendar-grid" id="calendar-grid"></div>
+        <div class="calendar-legend">
+          <div class="legend-item"><div class="legend-dot available"></div><span>Disponible</span></div>
+          <div class="legend-item"><div class="legend-dot blocked"></div><span>No disponible</span></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem">
+        <p style="color:var(--color-text-muted);margin-bottom:1.25rem">¿Tu fecha está disponible? ¡Cotiza ahora!</p>
+        <a href="contacto.html" class="btn btn-primary btn-lg">Solicitar cotización</a>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="js/page-disponibilidad.js"></script>
+</body>
+</html>

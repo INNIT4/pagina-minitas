@@ -75,9 +75,9 @@ function applyStaticContent() {
   // Navbar
   setText('nav-brand-name', c.nombre);
 
-  // Dropdowns de navegación
-  buildNavDropdown('nav-eventos', c.nav_eventos, '#eventos');
-  buildNavDropdown('nav-espacios', c.nav_espacios, '#espacios');
+  // Dropdowns de navegación (apuntan a las páginas dedicadas)
+  buildNavDropdown('nav-eventos', c.nav_eventos, 'eventos.html');
+  buildNavDropdown('nav-espacios', c.nav_espacios, 'espacios.html');
 
   // Hero
   setText('hero-title', c.tagline || 'El lugar perfecto para tu evento');
@@ -128,7 +128,7 @@ function buildFooterEventos(items) {
   const ul = document.getElementById('footer-eventos');
   if (!ul || !items) return;
   ul.innerHTML = items.map(item =>
-    `<li><a href="#eventos#${item}">${formatLabel(item)}</a></li>`
+    `<li><a href="eventos.html#${item}">${formatLabel(item)}</a></li>`
   ).join('');
 }
 

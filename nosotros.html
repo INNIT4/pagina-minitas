@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- ══ PAGE HERO ════════════════════════════════════════════ -->
+  <div class="page-hero">
+    <span class="page-hero-label">Quiénes somos</span>
+    <h1 class="page-hero-title">Nosotros</h1>
+    <p class="page-hero-subtitle">Más de una década creando momentos inolvidables en Hermosillo, Sonora.</p>
+  </div>
+
+  <!-- ══ NOSOTROS ════════════════════════════════════════════ -->
+  <section class="section" id="nosotros">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img reveal">
+          <img src="assets/gallery/bodas/foto1.jpg" alt="Nuestro salón" id="about-img"
+               onerror="this.src='';this.parentElement.style.background='var(--color-surface-alt)'">
+        </div>
+        <div class="about-content">
+          <span class="section-label">Nuestra historia</span>
+          <h2 class="about-title reveal" id="nosotros-title">Tu evento, nuestra pasión</h2>
+          <div class="divider divider-left"></div>
+          <p class="about-text reveal" id="nosotros-text"></p>
+          <a href="contacto.html" class="btn btn-outline-dark reveal">Cotizar mi evento</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIOS ══════════════════════════════════════════ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Lo que dicen nuestros clientes</span>
+        <h2 class="section-title">Testimonios</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="testimonios-grid" id="testimonios-grid"></div>
+    </div>
+  </section>
+
+  <script type="module" src="js/page-nosotros.js"></script>
+</body>
+</html>
