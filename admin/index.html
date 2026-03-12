@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- ══ LOGIN ═══════════════════════════════════════════════════ -->
+  <div id="view-login" class="login-wrap">
+    <div class="login-card">
+      <div class="login-logo">
+        <span class="login-logo-text" id="login-salon-name">Panel Admin</span>
+      </div>
+      <h1 class="login-title">Iniciar sesión</h1>
+      <p class="login-sub">Accede para gestionar tu sitio web</p>
+      <form id="form-login" class="login-form" novalidate>
+        <div class="a-form-group">
+          <label class="a-label" for="l-email">Correo electrónico</label>
+          <input class="a-input" type="email" id="l-email" placeholder="admin@tudominio.mx" required autocomplete="email">
+        </div>
+        <div class="a-form-group">
+          <label class="a-label" for="l-password">Contraseña</label>
+          <input class="a-input" type="password" id="l-password" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <div class="login-error" id="login-error" hidden></div>
+        <button type="submit" class="a-btn a-btn-primary" id="btn-login">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══ DASHBOARD ════════════════════════════════════════════════ -->
+  <div id="view-dashboard" hidden>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-logo" id="sidebar-salon-name">Admin</span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-link active" data-section="cotizaciones">
+          <span class="sidebar-icon">📋</span> Cotizaciones
+        </button>
+        <button class="sidebar-link" data-section="calendario">
+          <span class="sidebar-icon">📅</span> Calendario
+        </button>
+        <button class="sidebar-link" data-section="textos">
+          <span class="sidebar-icon">✏️</span> Textos
+        </button>
+        <button class="sidebar-link" data-section="galeria">
+          <span class="sidebar-icon">🖼️</span> Galería
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="a-btn a-btn-ghost" id="btn-logout">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Menú">&#9776;</button>
+        <h1 class="admin-section-title" id="admin-section-title">Cotizaciones</h1>
+        <div class="topbar-user">
+          <span id="topbar-email"></span>
+        </div>
+      </header>
+
+      <!-- Sección: Cotizaciones -->
+      <section id="section-cotizaciones" class="admin-section">
+        <div class="section-toolbar">
+          <div class="toolbar-filters">
+            <button class="filter-btn active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="unread">Sin leer</button>
+          </div>
+        </div>
+        <div class="cotizaciones-list" id="cotizaciones-list">
+          <div class="empty-state">Cargando cotizaciones...</div>
+        </div>
+      </section>
+
+      <!-- Sección: Calendario -->
+      <section id="section-calendario" class="admin-section" hidden>
+        <div class="section-info">
+          <p>Haz clic en un día futuro para bloquear o desbloquear esa fecha.</p>
+        </div>
+        <div class="a-calendar-wrap">
+          <div class="a-calendar-header">
+            <button class="a-cal-nav" id="a-cal-prev">&#8249;</button>
+            <span class="a-cal-month" id="a-cal-month"></span>
+            <button class="a-cal-nav" id="a-cal-next">&#8250;</button>
+          </div>
+          <div class="a-calendar-grid" id="a-calendar-grid"></div>
+          <div class="a-cal-legend">
+            <span class="legend-item"><span class="dot blocked"></span> Bloqueado (click para desbloquear)</span>
+            <span class="legend-item"><span class="dot available"></span> Disponible (click para bloquear)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección: Textos -->
+      <section id="section-textos" class="admin-section" hidden>
+        <form id="form-textos" class="textos-form">
+          <div class="a-card">
+            <h2 class="a-card-title">Hero</h2>
+            <div class="a-form-group">
+              <label class="a-label" for="t-hero-titulo">Título principal</label>
+              <input class="a-input" type="text" id="t-hero-titulo" placeholder="El lugar perfecto para tu evento">
+            </div>
+            <div class="a-form-group">
+              <label class="a-label" for="t-hero-sub">Subtítulo</label>
+              <textarea class="a-input a-textarea" id="t-hero-sub" rows="2" placeholder="Descripción breve..."></textarea>
+            </div>
+          </div>
+          <div class="a-card">
+            <h2 class="a-card-title">Nosotros</h2>
+            <div class="a-form-group">
+              <label class="a-label" for="t-nos-titulo">Título</label>
+              <input class="a-input" type="text" id="t-nos-titulo" placeholder="Tu evento, nuestra pasión">
+            </div>
+            <div class="a-form-group">
+              <label class="a-label" for="t-nos-texto">Texto</label>
+              <textarea class="a-input a-textarea" id="t-nos-texto" rows="4" placeholder="Descripción del salón..."></textarea>
+            </div>
+            <div class="a-form-group">
+              <label class="a-label" for="t-nos-img">URL de imagen</label>
+              <input class="a-input" type="url" id="t-nos-img" placeholder="https://...">
+            </div>
+          </div>
+          <div class="form-actions-bar">
+            <button type="submit" class="a-btn a-btn-primary" id="btn-save-textos">Guardar cambios</button>
+            <span class="save-status" id="save-textos-status"></span>
+          </div>
+        </form>
+      </section>
+
+      <!-- Sección: Galería -->
+      <section id="section-galeria" class="admin-section" hidden>
+        <div class="a-card">
+          <h2 class="a-card-title">Subir foto</h2>
+          <div class="upload-area" id="upload-area">
+            <input type="file" id="file-input" accept="image/*" multiple hidden>
+            <div class="upload-placeholder" id="upload-placeholder">
+              <span class="upload-icon">📁</span>
+              <p>Haz clic para seleccionar imágenes</p>
+              <p class="upload-hint">JPG, PNG, WebP — máx. 5 MB por imagen</p>
+            </div>
+          </div>
+          <div class="a-form-group" style="margin-top:1rem">
+            <label class="a-label" for="upload-categoria">Categoría</label>
+            <select class="a-input" id="upload-categoria">
+              <option value="bodas">Bodas</option>
+              <option value="xv">XV Años</option>
+              <option value="bautizos">Bautizos</option>
+              <option value="empresariales">Empresariales</option>
+            </select>
+          </div>
+          <button class="a-btn a-btn-primary" id="btn-upload" disabled>Subir fotos</button>
+          <div class="upload-progress" id="upload-progress" hidden>
+            <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+            <span id="upload-status"></span>
+          </div>
+        </div>
+        <div class="gallery-admin-grid" id="gallery-admin-grid">
+          <div class="empty-state">Cargando galería...</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div class="a-toast" id="a-toast"></div>
+
+  <script type="module" src="js/admin-main.js"></script>
+</body>
+</html>

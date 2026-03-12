@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Cualquier usuario autenticado (admin) puede leer y escribir todo
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Público: solo lectura en contenido del sitio
+    match /content/{doc} {
+      allow read: if true;
+    }
+
+    match /eventos/{doc} {
+      allow read: if true;
+    }
+
+    match /espacios/{doc} {
+      allow read: if true;
+    }
+
+    match /gallery/{doc} {
+      allow read: if true;
+    }
+
+    match /availability/{doc} {
+      allow read: if true;
+    }
+
+    match /testimonios/{doc} {
+      allow read: if true;
+    }
+
+    match /faq/{doc} {
+      allow read: if true;
+    }
+
+    match /popup/{doc} {
+      allow read: if true;
+    }
+
+    // Público: solo crear cotizaciones (no leer ni modificar)
+    match /cotizaciones/{cotizacionId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
+  }
+}

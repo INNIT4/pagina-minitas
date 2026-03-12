@@ -1,0 +1,145 @@
+/* ── RESPONSIVE (mobile-first breakpoints) ────────────────────
+   Base: 0–599px (mobile)
+   md:   600px+  (tablet)
+   lg:   960px+  (desktop)
+   xl:   1200px+ (wide)
+   ─────────────────────────────────────────────────────────── */
+
+/* ── NAVBAR ─────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  .navbar {
+    padding: 0 var(--space-5);
+  }
+}
+
+/* ── HERO ───────────────────────────────────────────────────── */
+@media (max-width: 599px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+}
+
+/* ── ABOUT ──────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .about-img { order: -1; }
+}
+
+/* ── SPACIOS ────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .espacio-card {
+    grid-template-columns: 1fr;
+  }
+
+  .espacio-card:nth-child(even) { direction: ltr; }
+
+  .espacio-img { min-height: 220px; }
+}
+
+/* ── QUOTE FORM ─────────────────────────────────────────────── */
+@media (max-width: 899px) {
+  .quote-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 599px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-form {
+    padding: var(--space-6);
+  }
+}
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ── SECTION PADDING ────────────────────────────────────────── */
+@media (max-width: 599px) {
+  .section {
+    padding: var(--space-12) var(--space-5);
+  }
+
+  .section-header {
+    margin-bottom: var(--space-8);
+  }
+}
+
+/* ── STATS ──────────────────────────────────────────────────── */
+@media (max-width: 599px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── GALLERY ────────────────────────────────────────────────── */
+@media (max-width: 599px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+  }
+
+  .lightbox-nav { font-size: 1.5rem; padding: var(--space-3); }
+}
+
+/* ── CALENDAR ───────────────────────────────────────────────── */
+@media (max-width: 479px) {
+  .calendar-grid { gap: var(--space-1); }
+  .calendar-day { font-size: 0.7rem; }
+  .calendar-day-header { font-size: 0.6rem; }
+}
+
+/* ── TESTIMONIOS ────────────────────────────────────────────── */
+@media (max-width: 599px) {
+  .testimonios-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── WHATSAPP FAB ───────────────────────────────────────────── */
+@media (max-width: 599px) {
+  .whatsapp-fab {
+    bottom: var(--space-5);
+    right: var(--space-5);
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* ── MAP ────────────────────────────────────────────────────── */
+@media (max-width: 599px) {
+  .map-wrapper { height: 280px; }
+}
+
+/* ── POPUP ──────────────────────────────────────────────────── */
+@media (max-width: 479px) {
+  .popup-body { padding: var(--space-6); }
+  .popup-title { font-size: var(--font-size-xl); }
+}
