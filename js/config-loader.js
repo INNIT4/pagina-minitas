@@ -98,6 +98,12 @@ function applyStaticContent() {
   }
   setText('contact-address', c.direccion);
 
+  // Botones CTA directos (index)
+  const ctaWA = document.getElementById('cta-whatsapp');
+  if (ctaWA) ctaWA.href = `https://wa.me/${c.whatsapp}?text=${encodeURIComponent(c.whatsapp_mensaje)}`;
+  const ctaEmail = document.getElementById('cta-email');
+  if (ctaEmail) ctaEmail.href = `mailto:${c.email}`;
+
   // Mapa embed
   const mapIframe = document.getElementById('map-iframe');
   if (mapIframe && c.maps_embed_url) mapIframe.src = c.maps_embed_url;

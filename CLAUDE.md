@@ -1,5 +1,35 @@
 # venue-template — Instrucciones para Claude Code
 
+## Cliente actual: Eventos El Marqués
+
+| Campo | Valor |
+|-------|-------|
+| **Nombre** | Eventos El Marqués |
+| **Ciudad** | Hermosillo, Sonora |
+| **Dirección** | Ramón Valdez Ramírez 1004, Unión de Ladrilleros, C.P. 83131 |
+| **Teléfono/WhatsApp** | +52 1 662 508 5924 |
+| **Email** | elmarqueseventos@hotmail.com |
+| **Instagram** | @elmarques.eventoshmo |
+| **Facebook** | /elmarqueseventos |
+| **Firebase project** | salon-primavera |
+| **Capacidad** | 100–600 invitados |
+| **Precios** | $200–$295 MXN por persona (mínimo $20,500) |
+| **Horario máximo** | 2:00 AM |
+| **Colores** | Borgoña `#8B1A1A` + Gold `#C9A84C` |
+| **Logo** | `assets/logo.jpg` (imagen real, fondo borgoña con flor de lis) |
+| **Hero** | `assets/hero-fallback.jpg` (banner rectangular oficial con collage de eventos) |
+| **Coordenadas** | 29.1249753, -111.0105531 |
+| **Maps Place ID** | `0x86ce8139dbe39b81:0x979223b7f50f4e40` |
+
+### Paquetes configurados
+| Paquete | Precio/persona | Mínimo |
+|---------|---------------|--------|
+| Clásico | $200 | 100 personas |
+| Premier | $248 | 150 personas |
+| Marqués | $295 | 200 personas |
+
+
+
 ## Stack
 Vanilla HTML + CSS + ES6 modules. Sin build step.
 
@@ -57,7 +87,7 @@ El sitio siempre funciona con solo `config/client.js` (fallback graceful si Fire
 2. Editar `config/client.js` (colores, datos, SEO, teléfonos)
 3. Crear proyecto Firebase → editar `js/firebase-config.js` + `.firebaserc`
 4. `firebase deploy --only firestore:rules`
-5. Reemplazar `assets/logo.svg`, `assets/hero-fallback.jpg`, `assets/og-image.jpg`
+5. Reemplazar `assets/logo.jpg` (o .svg), `assets/hero-fallback.jpg`, `assets/og-image.jpg`
 6. `firebase deploy`
 7. Crear usuario admin en Firebase Auth Console
 8. Entregar URL `/admin/` + credenciales al cliente
@@ -71,7 +101,7 @@ El sitio siempre funciona con solo `config/client.js` (fallback graceful si Fire
 /espacios/{id}            { nombre, capacidad, descripcion, imagen_url }
 /gallery/{id}             { url, categoria, orden }
 /availability/blocked_dates { fechas: [{fecha: "YYYY-MM-DD", motivo}] }
-/cotizaciones/{id}        { nombre, telefono, tipo_evento, fecha, personas, mensaje, timestamp, leido }
+/cotizaciones/{id}        { nombre, telefono, email, tipo_evento, paquete, fecha, horario, personas, referencia, mensaje, timestamp, leido }
 /testimonios/{id}         { nombre, evento, texto, estrellas, visible }
 /faq/{id}                 { pregunta, respuesta, orden }
 /popup/config             { activo, titulo, texto, imagen_url, delay_ms }

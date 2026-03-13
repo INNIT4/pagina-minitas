@@ -9,8 +9,9 @@
   display: flex;
   align-items: center;
   padding: 0 var(--space-6);
-  background: transparent;
-  transition: background var(--transition), box-shadow var(--transition);
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  transition: background var(--transition), box-shadow var(--transition), backdrop-filter var(--transition);
 }
 
 .navbar.scrolled {
@@ -40,8 +41,9 @@
 }
 
 .nav-logo img {
-  height: 40px;
+  height: 52px;
   width: auto;
+  border-radius: var(--radius-sm);
 }
 
 .nav-logo-text {
@@ -389,6 +391,23 @@
   background: rgba(255,255,255,0.5);
 }
 
+/* ── FLEUR WATERMARK (hero) ───────────────────────────────────── */
+.fleur-watermark {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(380px, 45vw);
+  height: auto;
+  color: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+  z-index: 1;
+}
+.fleur-watermark svg {
+  width: 100%;
+  height: 100%;
+}
+
 /* ── SECCIONES GENERALES ──────────────────────────────────────── */
 .section {
   padding: var(--space-20) var(--space-6);
@@ -399,12 +418,25 @@
 }
 
 .section-dark {
-  background: var(--color-text);
+  background: #1a0505;
   color: white;
 }
 
 .section-dark h2,
 .section-dark h3 { color: white; }
+
+.section-burgundy {
+  background: var(--color-primary);
+  color: #fff;
+}
+.section-burgundy .section-label,
+.section-burgundy .section-title,
+.section-burgundy .section-subtitle {
+  color: #fff;
+}
+.section-burgundy .divider {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+}
 
 .container {
   max-width: var(--max-width);
@@ -470,6 +502,49 @@
   font-weight: 500;
 }
 
+/* ── SERVICIOS SECTION ────────────────────────────────────────── */
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-6);
+}
+
+.servicio-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-6);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+  border-bottom: 3px solid transparent;
+}
+
+.servicio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-bottom-color: var(--color-accent);
+}
+
+.servicio-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-4);
+  display: block;
+}
+
+.servicio-nombre {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.servicio-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
 /* ── EVENTOS SECTION ──────────────────────────────────────────── */
 .eventos-grid {
   display: grid;
@@ -483,11 +558,23 @@
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition), box-shadow var(--transition);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
 }
 
 .evento-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
+}
+
+.evento-cta {
+  display: inline-block;
+  margin-top: var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  font-weight: 600;
 }
 
 .evento-img {
@@ -697,6 +784,26 @@
   width: 32px;
   height: 32px;
   color: white;
+}
+
+.gallery-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  height: 100%;
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  cursor: default;
+}
+
+.gallery-item:not([tabindex]) {
+  cursor: default;
 }
 
 /* Lightbox */

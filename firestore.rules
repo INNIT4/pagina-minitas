@@ -29,10 +29,14 @@ service cloud.firestore {
     }
 
     match /testimonios/{doc} {
-      allow read: if true;
+      allow read: if resource.data.visible == true || request.auth != null;
     }
 
     match /faq/{doc} {
+      allow read: if true;
+    }
+
+    match /config/{doc} {
       allow read: if true;
     }
 

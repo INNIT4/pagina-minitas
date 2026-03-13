@@ -14,6 +14,13 @@ export function initQuoteForm() {
     const today = new Date().toISOString().split('T')[0];
     fechaInput.min = today;
   }
+
+  // Pre-seleccionar tipo de evento desde URL (?tipo=Boda)
+  const tipo = new URLSearchParams(location.search).get('tipo');
+  if (tipo) {
+    const select = document.getElementById('q-tipo');
+    if (select) select.value = tipo;
+  }
 }
 
 function handleSubmit(channel) {
@@ -33,9 +40,10 @@ function validateForm() {
   const fields = [
     { id: 'q-nombre',   errId: 'err-nombre',   check: v => v.trim().length >= 2 },
     { id: 'q-telefono', errId: 'err-telefono',  check: v => /^\d[\d\s\-]{7,}$/.test(v.trim()) },
+    { id: 'q-email',    errId: 'err-email',     check: v => v === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
     { id: 'q-tipo',     errId: 'err-tipo',      check: v => v !== '' },
     { id: 'q-fecha',    errId: 'err-fecha',     check: v => v !== '' },
-    { id: 'q-personas', errId: 'err-personas',  check: v => parseInt(v) > 0 }
+    { id: 'q-personas', errId: 'err-personas',  check: v => parseInt(v) >= 100 }
   ];
 
   fields.forEach(({ id, errId, check }) => {
@@ -56,9 +64,13 @@ function getFormData() {
   return {
     nombre:      document.getElementById('q-nombre')?.value.trim() || '',
     telefono:    document.getElementById('q-telefono')?.value.trim() || '',
+    email:       document.getElementById('q-email')?.value.trim() || '',
     tipo_evento: document.getElementById('q-tipo')?.value || '',
+    paquete:     document.getElementById('q-paquete')?.value || '',
     fecha:       document.getElementById('q-fecha')?.value || '',
+    horario:     document.getElementById('q-horario')?.value || '',
     personas:    document.getElementById('q-personas')?.value || '',
+    referencia:  document.getElementById('q-referencia')?.value || '',
     mensaje:     document.getElementById('q-mensaje')?.value.trim() || '',
     timestamp:   new Date().toISOString(),
     leido:       false
@@ -71,10 +83,14 @@ function sendWhatsApp(data) {
     ``,
     `👤 *Nombre:* ${data.nombre}`,
     `📞 *Teléfono:* ${data.telefono}`,
-    `🎉 *Tipo de evento:* ${capitalize(data.tipo_evento)}`,
+    data.email       ? `📧 *Correo:* ${data.email}` : '',
+    `🎉 *Tipo de evento:* ${data.tipo_evento}`,
+    data.paquete     ? `📦 *Paquete de interés:* ${data.paquete}` : '',
     `📅 *Fecha:* ${formatDate(data.fecha)}`,
-    `👥 *Personas:* ${data.personas}`,
-    data.mensaje ? `💬 *Mensaje:* ${data.mensaje}` : ''
+    data.horario     ? `🕐 *Horario:* ${data.horario}` : '',
+    `👥 *Invitados:* ${data.personas}`,
+    data.referencia  ? `📣 *Nos conoció por:* ${data.referencia}` : '',
+    data.mensaje     ? `\n💬 *Mensaje:*\n${data.mensaje}` : ''
   ].filter(Boolean).join('\n');
 
   const url = `https://wa.me/${CLIENT_CONFIG.whatsapp}?text=${encodeURIComponent(text)}`;
@@ -82,17 +98,24 @@ function sendWhatsApp(data) {
 }
 
 function sendEmail(data) {
-  const subject = `Cotización de evento – ${capitalize(data.tipo_evento)} – ${data.fecha}`;
+  const subject = `Cotización – ${data.tipo_evento} – ${formatDate(data.fecha)} – ${data.personas} invitados`;
   const body = [
-    `Nombre: ${data.nombre}`,
-    `Teléfono: ${data.telefono}`,
-    `Tipo de evento: ${capitalize(data.tipo_evento)}`,
+    `SOLICITUD DE COTIZACIÓN – ${CLIENT_CONFIG.nombre}`,
+    `${'─'.repeat(40)}`,
+    `Nombre:          ${data.nombre}`,
+    `Teléfono:        ${data.telefono}`,
+    data.email      ? `Correo:          ${data.email}` : '',
+    ``,
+    `Tipo de evento:  ${data.tipo_evento}`,
+    data.paquete    ? `Paquete:         ${data.paquete}` : '',
     `Fecha tentativa: ${formatDate(data.fecha)}`,
-    `Número de personas: ${data.personas}`,
+    data.horario    ? `Horario:         ${data.horario}` : '',
+    `Nº de invitados: ${data.personas}`,
+    data.referencia ? `Nos conoció por: ${data.referencia}` : '',
     ``,
     `Mensaje:`,
     data.mensaje || '(sin mensaje adicional)'
-  ].join('\n');
+  ].filter(l => l !== null && l !== undefined).join('\n');
 
   window.location.href = `mailto:${CLIENT_CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }

@@ -24,11 +24,13 @@ export async function logout() {
 
 export function translateAuthError(code) {
   const map = {
-    'auth/invalid-email':      'Correo inválido.',
-    'auth/user-not-found':     'Usuario no encontrado.',
-    'auth/wrong-password':     'Contraseña incorrecta.',
-    'auth/too-many-requests':  'Demasiados intentos. Intenta más tarde.',
-    'auth/network-request-failed': 'Error de red. Verifica tu conexión.'
+    'auth/invalid-email':         'Correo inválido.',
+    'auth/user-not-found':        'Usuario no encontrado.',
+    'auth/wrong-password':        'Contraseña incorrecta.',
+    'auth/invalid-credential':    'Correo o contraseña incorrectos.',
+    'auth/too-many-requests':     'Demasiados intentos. Intenta más tarde.',
+    'auth/network-request-failed':'Error de red. Verifica tu conexión.',
+    'auth/unauthorized-domain':   'Este dominio no está autorizado. Revisa Firebase Console.'
   };
   return map[code] || 'Error al iniciar sesión. Intenta de nuevo.';
 }

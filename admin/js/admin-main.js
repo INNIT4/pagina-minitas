@@ -2,10 +2,12 @@
 import { isConfigured } from '../../js/firebase-config.js';
 import { CLIENT_CONFIG } from '../../config/client.js';
 import { initAuth, loginWithEmail, logout, translateAuthError } from './admin-auth.js';
-import { initAdminCotizaciones } from './admin-cotizaciones.js';
 import { initAdminCalendar } from './admin-calendar.js';
 import { initAdminTextos } from './admin-textos.js';
 import { initAdminGaleria } from './admin-galeria.js';
+import { initAdminTestimonios } from './admin-testimonios.js';
+import { initAdminFaq } from './admin-faq.js';
+import { initAdminPaquetes } from './admin-paquetes.js';
 
 // Si Firebase no está configurado, redirigir con mensaje
 if (!isConfigured) {
@@ -75,6 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+let adminInitialized = false;
+
 function onLogin(user) {
   document.getElementById('view-login').hidden     = true;
   document.getElementById('view-dashboard').hidden = false;
@@ -82,18 +86,23 @@ function onLogin(user) {
   const emailEl = document.getElementById('topbar-email');
   if (emailEl) emailEl.textContent = user.email;
 
-  // Inicializar módulos admin
-  initAdminCotizaciones();
-  initAdminCalendar();
-  initAdminTextos();
-  initAdminGaleria();
-
-  showSection('cotizaciones');
+  // Inicializar módulos solo una vez
+  if (!adminInitialized) {
+    adminInitialized = true;
+    initAdminCalendar();
+    initAdminTextos();
+    initAdminGaleria();
+    initAdminTestimonios();
+    initAdminFaq();
+    initAdminPaquetes();
+    showSection('calendario');
+  }
 }
 
 function onLogout() {
   document.getElementById('view-login').hidden     = false;
   document.getElementById('view-dashboard').hidden = true;
+  adminInitialized = false;
 }
 
 function showSection(name) {
@@ -106,10 +115,12 @@ function showSection(name) {
 
   // Actualizar título y sidebar activo
   const titleMap = {
-    cotizaciones: 'Cotizaciones',
     calendario:   'Calendario de disponibilidad',
     textos:       'Editar textos',
-    galeria:      'Galería de fotos'
+    galeria:      'Galería de fotos',
+    testimonios:  'Testimonios',
+    faq:          'Preguntas frecuentes',
+    paquetes:     'Paquetes y precios'
   };
 
   const title = document.getElementById('admin-section-title');

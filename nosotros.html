@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nosotros</title>
+  <title>Nosotros – Eventos El Marqués | Ciudad Obregón</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://salon-primavera.firebaseapp.com">
+  <link rel="preconnect" href="https://firestore.googleapis.com">
+  <link rel="preconnect" href="https://www.googleapis.com">
+  <link rel="preconnect" href="https://apis.google.com">
+  <link rel="preload" as="image" href="assets/logo.webp" type="image/webp">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -26,12 +33,15 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-img reveal">
-          <img src="assets/gallery/bodas/foto1.jpg" alt="Nuestro salón" id="about-img"
-               onerror="this.src='';this.parentElement.style.background='var(--color-surface-alt)'">
+          <picture>
+            <source srcset="assets/logo.webp" type="image/webp">
+            <img src="assets/logo.jpg" alt="Salón de eventos El Marqués" id="about-img" loading="lazy" width="651" height="651"
+                 onerror="this.src='';this.parentElement.style.background='var(--color-surface-alt)'">
+          </picture>
         </div>
         <div class="about-content">
           <span class="section-label">Nuestra historia</span>
-          <h2 class="about-title reveal" id="nosotros-title">Tu evento, nuestra pasión</h2>
+          <h2 class="about-title reveal" id="nosotros-title">Tu celebración merece lo mejor</h2>
           <div class="divider divider-left"></div>
           <p class="about-text reveal" id="nosotros-text"></p>
           <a href="contacto.html" class="btn btn-outline-dark reveal">Cotizar mi evento</a>
@@ -40,8 +50,41 @@
     </div>
   </section>
 
-  <!-- ══ TESTIMONIOS ══════════════════════════════════════════ -->
+  <!-- ══ VALORES / SERVICIOS ════════════════════════════════ -->
   <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Por qué elegirnos</span>
+        <h2 class="section-title">Lo que nos hace únicos</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal" style="text-align:left;gap:.75rem;display:flex;flex-direction:column">
+          <div style="font-size:2rem">🍽️</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--color-primary)">Cocina propia</h3>
+          <p style="color:var(--color-text-muted);font-size:.93rem;line-height:1.7">Menús personalizados de res, pollo y puerco. Desde $200 hasta $295 por persona. Pastel externo permitido sin cargo.</p>
+        </div>
+        <div class="stat-card reveal reveal-delay-1" style="text-align:left;gap:.75rem;display:flex;flex-direction:column">
+          <div style="font-size:2rem">✨</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--color-primary)">Decoración y coordinación</h3>
+          <p style="color:var(--color-text-muted);font-size:.93rem;line-height:1.7">Equipo de coordinación dedicado, decoración personalizada, área lounge y barra iluminada de bebidas incluida.</p>
+        </div>
+        <div class="stat-card reveal reveal-delay-2" style="text-align:left;gap:.75rem;display:flex;flex-direction:column">
+          <div style="font-size:2rem">🅿️</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--color-primary)">Instalaciones completas</h3>
+          <p style="color:var(--color-text-muted);font-size:.93rem;line-height:1.7">Amplio estacionamiento, acceso para personas con discapacidad, pista de baile profesional y eventos hasta las 2:00 AM.</p>
+        </div>
+        <div class="stat-card reveal reveal-delay-3" style="text-align:left;gap:.75rem;display:flex;flex-direction:column">
+          <div style="font-size:2rem">⭐</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--color-primary)">Calificación 4.8/5</h3>
+          <p style="color:var(--color-text-muted);font-size:.93rem;line-height:1.7">El 96% de nuestros clientes nos recomiendan. "Muy elegante, limpio y con un trato profesional de primera." — Cliente verificado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIOS ══════════════════════════════════════════ -->
+  <section class="section">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Lo que dicen nuestros clientes</span>

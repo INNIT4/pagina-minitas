@@ -4,9 +4,11 @@
    ─────────────────────────────────────────────────────────────── */
 :root {
   /* Colores principales (sobreescritos por config/client.js) */
-  --color-primary:       #8B6914;
-  --color-primary-light: #B8921E;
-  --color-accent:        #C8A44A;
+  --color-primary:       #8B1A1A;
+  --color-primary-light: #A52020;
+  --color-accent:        #C9A84C;
+  --color-burgundy-dark: #6B1414;
+  --color-burgundy-deep: #1a0505;
   --color-bg:            #FAF8F4;
   --color-text:          #1A1A1A;
 
@@ -25,6 +27,7 @@
 
   /* Tipografía */
   --font-heading: 'Playfair Display', 'Georgia', serif;
+  --font-script:  'Great Vibes', 'Dancing Script', cursive;
   --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-size-xs:  0.75rem;   /* 12px */
   --font-size-sm:  0.875rem;  /* 14px */

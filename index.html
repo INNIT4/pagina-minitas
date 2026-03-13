@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Salón de Eventos</title>
+  <title>El Marqués – Hermosillo, Sonora</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta property="og:type" content="website">
@@ -19,7 +19,14 @@
   <script type="application/ld+json" id="schema-localbusiness"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://salon-primavera.firebaseapp.com">
+  <link rel="preconnect" href="https://firestore.googleapis.com">
+  <link rel="preconnect" href="https://www.googleapis.com">
+  <link rel="preconnect" href="https://apis.google.com">
+  <link rel="preload" as="image" href="assets/logo.webp" type="image/webp">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"></noscript>
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -33,14 +40,18 @@
 
   <!-- ══ HERO ══════════════════════════════════════════════════ -->
   <section class="hero" id="inicio">
+
     <div class="hero-bg" id="hero-bg">
-      <img src="assets/hero-fallback.jpg" alt="Salón de eventos" id="hero-img">
+      <picture>
+        <source srcset="assets/hero-fallback.webp" type="image/webp">
+        <img src="assets/hero-fallback.jpg" alt="El Marqués – Salón elegante en Hermosillo" id="hero-img" fetchpriority="high">
+      </picture>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="hero-eyebrow">Hermosillo, Sonora</span>
-      <h1 class="hero-title" id="hero-title">El lugar perfecto para tu evento</h1>
-      <p class="hero-subtitle" id="hero-subtitle">Creamos experiencias únicas e inolvidables para los momentos más especiales de tu vida.</p>
+      <h1 class="hero-title" id="hero-title"><span class="script-title">El Marqués</span>Donde cada evento se convierte en un recuerdo eterno</h1>
+      <p class="hero-subtitle" id="hero-subtitle">Elegancia, distinción y servicio de primer nivel para bodas, XV años, bautizos y eventos empresariales. Capacidad hasta 600 invitados.</p>
       <div class="hero-actions">
         <a href="contacto.html" class="btn btn-primary btn-lg">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -58,10 +69,10 @@
   <section class="section section-alt">
     <div class="container">
       <div class="stats-grid" id="stats-grid">
-        <div class="stat-card reveal"><div class="stat-number" data-target="500" data-sufijo="+">500+</div><div class="stat-label">Eventos realizados</div></div>
+        <div class="stat-card reveal"><div class="stat-number" data-target="300" data-sufijo="+">300+</div><div class="stat-label">Eventos realizados</div></div>
         <div class="stat-card reveal reveal-delay-1"><div class="stat-number" data-target="10" data-sufijo="+">10+</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat-card reveal reveal-delay-2"><div class="stat-number" data-target="800">800</div><div class="stat-label">Invitados máx.</div></div>
-        <div class="stat-card reveal reveal-delay-3"><div class="stat-number" data-target="98" data-sufijo="%">98%</div><div class="stat-label">Satisfacción</div></div>
+        <div class="stat-card reveal reveal-delay-2"><div class="stat-number" data-target="600">600</div><div class="stat-label">Invitados máx.</div></div>
+        <div class="stat-card reveal reveal-delay-3"><div class="stat-number" data-target="96" data-sufijo="%">96%</div><div class="stat-label">Clientes que nos recomiendan</div></div>
       </div>
     </div>
   </section>
@@ -71,14 +82,19 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-img reveal">
-          <img src="assets/gallery/bodas/foto1.jpg" alt="Nuestro salón" id="about-img"
-               onerror="this.src='';this.parentElement.style.background='var(--color-surface-alt)'">
+          <picture>
+            <source srcset="assets/logo.webp" type="image/webp">
+            <img src="assets/logo.jpg" alt="Salón de eventos El Marqués" id="about-img" loading="lazy" width="651" height="651"
+                 onerror="this.src='';this.parentElement.style.background='var(--color-surface-alt)'">
+          </picture>
         </div>
         <div class="about-content">
           <span class="section-label">Nuestra historia</span>
-          <h2 class="about-title reveal" id="nosotros-title">Tu evento, nuestra pasión</h2>
-          <div class="divider divider-left"></div>
-          <p class="about-text reveal" id="nosotros-text">Con más de una década de experiencia, hemos tenido el honor de ser parte de los momentos más especiales de cientos de familias en Hermosillo y Sonora.</p>
+          <h2 class="about-title reveal" id="nosotros-title">Elegancia y distinción en cada detalle</h2>
+          <div class="fleur-ornament" aria-hidden="true">
+            <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg"><path d="M30 3 C27 9, 21 12, 18 18 C15 24, 17 30, 21 33 C18 36, 15 42, 18 47 C21 52, 27 53, 30 51 C33 53, 39 52, 42 47 C45 42, 42 36, 39 33 C43 30, 45 24, 42 18 C39 12, 33 9, 30 3Z M30 51 C29 57, 25 60, 23 65 C22 67, 23 71, 25 72 L30 73 L35 72 C37 71, 38 67, 37 65 C35 60, 31 57, 30 51Z M21 33 C17 34, 12 33, 9 35 C6 37, 5 41, 7 44 C9 47, 15 46, 18 44 M39 33 C43 34, 48 33, 51 35 C54 37, 55 41, 53 44 C51 47, 45 46, 42 44" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <p class="about-text reveal" id="nosotros-text">Somos el salón de eventos de referencia en Hermosillo, Sonora. Con más de una década de experiencia, hemos tenido el honor de ser parte de los momentos más especiales de cientos de familias. Nuestras instalaciones combinan lujo, sofisticación y un servicio personalizado para que cada evento sea único e inolvidable.</p>
           <a href="nosotros.html" class="btn btn-outline-dark reveal">Conoce más</a>
         </div>
       </div>
@@ -91,7 +107,9 @@
       <div class="section-header">
         <span class="section-label">Lo que ofrecemos</span>
         <h2 class="section-title">Tipos de eventos</h2>
-        <div class="divider"></div>
+        <div class="fleur-ornament" aria-hidden="true">
+          <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg"><path d="M30 3 C27 9, 21 12, 18 18 C15 24, 17 30, 21 33 C18 36, 15 42, 18 47 C21 52, 27 53, 30 51 C33 53, 39 52, 42 47 C45 42, 42 36, 39 33 C43 30, 45 24, 42 18 C39 12, 33 9, 30 3Z M30 51 C29 57, 25 60, 23 65 C22 67, 23 71, 25 72 L30 73 L35 72 C37 71, 38 67, 37 65 C35 60, 31 57, 30 51Z M21 33 C17 34, 12 33, 9 35 C6 37, 5 41, 7 44 C9 47, 15 46, 18 44 M39 33 C43 34, 48 33, 51 35 C54 37, 55 41, 53 44 C51 47, 45 46, 42 44" fill="currentColor" stroke="none"/></svg>
+        </div>
         <p class="section-subtitle">Cada evento es único. Nos adaptamos a tus necesidades.</p>
       </div>
       <div class="eventos-grid" id="eventos-grid"></div>
@@ -101,15 +119,153 @@
     </div>
   </section>
 
+  <!-- ══ PAQUETES / PRECIOS ════════════════════════════════════ -->
+  <section class="section section-alt" id="paquetes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Transparencia en precios</span>
+        <h2 class="section-title">Nuestros paquetes</h2>
+        <div class="fleur-ornament" aria-hidden="true">
+          <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg"><path d="M30 3 C27 9, 21 12, 18 18 C15 24, 17 30, 21 33 C18 36, 15 42, 18 47 C21 52, 27 53, 30 51 C33 53, 39 52, 42 47 C45 42, 42 36, 39 33 C43 30, 45 24, 42 18 C39 12, 33 9, 30 3Z M30 51 C29 57, 25 60, 23 65 C22 67, 23 71, 25 72 L30 73 L35 72 C37 71, 38 67, 37 65 C35 60, 31 57, 30 51Z M21 33 C17 34, 12 33, 9 35 C6 37, 5 41, 7 44 C9 47, 15 46, 18 44 M39 33 C43 34, 48 33, 51 35 C54 37, 55 41, 53 44 C51 47, 45 46, 42 44" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <p class="section-subtitle">Todos incluyen coordinación de evento, pista de baile y estacionamiento amplio.</p>
+      </div>
+      <div class="stats-grid" id="paquetes-grid" style="gap:1.5rem;align-items:stretch"></div>
+      <p style="text-align:center;margin-top:2rem;color:var(--color-text-muted);font-size:.875rem">
+        * Precios por persona en MXN. Pago mínimo desde $20,500. Efectivo o tarjeta.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ SERVICIOS ════════════════════════════════════════════ -->
+  <section class="section" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Todo incluido</span>
+        <h2 class="section-title">Nuestros servicios</h2>
+        <div class="fleur-ornament" aria-hidden="true">
+          <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg"><path d="M30 3 C27 9, 21 12, 18 18 C15 24, 17 30, 21 33 C18 36, 15 42, 18 47 C21 52, 27 53, 30 51 C33 53, 39 52, 42 47 C45 42, 42 36, 39 33 C43 30, 45 24, 42 18 C39 12, 33 9, 30 3Z M30 51 C29 57, 25 60, 23 65 C22 67, 23 71, 25 72 L30 73 L35 72 C37 71, 38 67, 37 65 C35 60, 31 57, 30 51Z M21 33 C17 34, 12 33, 9 35 C6 37, 5 41, 7 44 C9 47, 15 46, 18 44 M39 33 C43 34, 48 33, 51 35 C54 37, 55 41, 53 44 C51 47, 45 46, 42 44" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <p class="section-subtitle">Cada detalle pensado para que tú solo disfrutes tu celebración.</p>
+      </div>
+      <div class="servicios-grid">
+
+        <div class="servicio-card reveal">
+          <div class="servicio-icon">🏛️</div>
+          <h3 class="servicio-nombre">Salón de lujo</h3>
+          <p class="servicio-desc">Instalaciones elegantes con capacidad para 100 a 600 invitados, climatizadas y con iluminación personalizable.</p>
+        </div>
+
+        <div class="servicio-card reveal reveal-delay-1">
+          <div class="servicio-icon">🍽️</div>
+          <h3 class="servicio-nombre">Gastronomía</h3>
+          <p class="servicio-desc">Menús de 3 y 4 tiempos elaborados por nuestro equipo culinario. Res, pollo y opciones especiales a elegir.</p>
+        </div>
+
+        <div class="servicio-card reveal reveal-delay-2">
+          <div class="servicio-icon">🎊</div>
+          <h3 class="servicio-nombre">Decoración</h3>
+          <p class="servicio-desc">Desde decoración base hasta flores naturales y ambientación premium personalizada al estilo de tu evento.</p>
+        </div>
+
+        <div class="servicio-card reveal reveal-delay-3">
+          <div class="servicio-icon">🎶</div>
+          <h3 class="servicio-nombre">Pista de baile</h3>
+          <p class="servicio-desc">Pista de baile amplia con sistema de audio profesional e iluminación de ambiente para toda la noche.</p>
+        </div>
+
+        <div class="servicio-card reveal">
+          <div class="servicio-icon">🥂</div>
+          <h3 class="servicio-nombre">Barra de bebidas</h3>
+          <p class="servicio-desc">Barra iluminada con bebidas incluidas. En paquete Marqués: barra libre completa hasta las 2:00 AM.</p>
+        </div>
+
+        <div class="servicio-card reveal reveal-delay-1">
+          <div class="servicio-icon">👔</div>
+          <h3 class="servicio-nombre">Coordinación</h3>
+          <p class="servicio-desc">Coordinador de eventos dedicado que supervisa cada detalle el día de tu celebración para que todo fluya perfecto.</p>
+        </div>
+
+        <div class="servicio-card reveal reveal-delay-2">
+          <div class="servicio-icon">🛋️</div>
+          <h3 class="servicio-nombre">Área lounge</h3>
+          <p class="servicio-desc">Espacios lounge exclusivos para que tus invitados disfruten en un ambiente más íntimo y relajado.</p>
+        </div>
+
+        <div class="servicio-card reveal reveal-delay-3">
+          <div class="servicio-icon">🚗</div>
+          <h3 class="servicio-nombre">Estacionamiento</h3>
+          <p class="servicio-desc">Amplio estacionamiento gratuito. Paquete Marqués incluye valet parking para mayor comodidad de tus invitados.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIOS ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="testimonios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Lo que dicen</span>
+        <h2 class="section-title">Testimonios</h2>
+        <div class="fleur-ornament" aria-hidden="true">
+          <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg"><path d="M30 3 C27 9, 21 12, 18 18 C15 24, 17 30, 21 33 C18 36, 15 42, 18 47 C21 52, 27 53, 30 51 C33 53, 39 52, 42 47 C45 42, 42 36, 39 33 C43 30, 45 24, 42 18 C39 12, 33 9, 30 3Z M30 51 C29 57, 25 60, 23 65 C22 67, 23 71, 25 72 L30 73 L35 72 C37 71, 38 67, 37 65 C35 60, 31 57, 30 51Z M21 33 C17 34, 12 33, 9 35 C6 37, 5 41, 7 44 C9 47, 15 46, 18 44 M39 33 C43 34, 48 33, 51 35 C54 37, 55 41, 53 44 C51 47, 45 46, 42 44" fill="currentColor" stroke="none"/></svg>
+        </div>
+      </div>
+      <div class="testimonios-grid" id="testimonios-grid"></div>
+    </div>
+  </section>
+
+  <!-- ══ FAQ ═══════════════════════════════════════════════════ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Resolvemos tus dudas</span>
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <div class="fleur-ornament" aria-hidden="true">
+          <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg"><path d="M30 3 C27 9, 21 12, 18 18 C15 24, 17 30, 21 33 C18 36, 15 42, 18 47 C21 52, 27 53, 30 51 C33 53, 39 52, 42 47 C45 42, 42 36, 39 33 C43 30, 45 24, 42 18 C39 12, 33 9, 30 3Z M30 51 C29 57, 25 60, 23 65 C22 67, 23 71, 25 72 L30 73 L35 72 C37 71, 38 67, 37 65 C35 60, 31 57, 30 51Z M21 33 C17 34, 12 33, 9 35 C6 37, 5 41, 7 44 C9 47, 15 46, 18 44 M39 33 C43 34, 48 33, 51 35 C54 37, 55 41, 53 44 C51 47, 45 46, 42 44" fill="currentColor" stroke="none"/></svg>
+        </div>
+      </div>
+      <ul class="faq-list" id="faq-list-index"></ul>
+    </div>
+  </section>
+
+  <!-- ══ INSTAGRAM ═════════════════════════════════════════════ -->
+  <section class="section section-alt">
+    <div class="container" style="text-align:center">
+      <span class="section-label">Síguenos</span>
+      <h2 class="section-title" style="margin-bottom:var(--space-4)">@elmarques.eventoshmo</h2>
+      <p class="section-subtitle" style="margin-bottom:var(--space-8)">Mira nuestros eventos más recientes y encuentra inspiración para tu celebración.</p>
+      <a href="https://www.instagram.com/elmarques.eventoshmo" target="_blank" rel="noopener noreferrer"
+         class="btn btn-primary btn-lg" style="display:inline-flex;align-items:center;gap:.6rem">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Ver en Instagram
+      </a>
+    </div>
+  </section>
+
   <!-- ══ CTA BANNER ════════════════════════════════════════════ -->
   <section class="section section-dark">
     <div class="container" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.5rem">
       <span class="section-label" style="color:var(--color-accent)">¿Listo para empezar?</span>
-      <h2 class="section-title" style="color:white">Haz realidad el evento de tus sueños</h2>
-      <p class="section-subtitle" style="color:rgba(255,255,255,0.7)">Contáctanos hoy y recibe una cotización personalizada sin compromiso.</p>
+      <h2 class="section-title" style="color:white">Celebra lo que más importa en El Marqués</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.7)">Menús desde $200 por persona · Hasta 600 invitados · Hasta las 2:00 AM · Hermosillo, Sonora.</p>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
-        <a href="contacto.html" class="btn btn-primary btn-lg">Cotizar ahora</a>
-        <a href="disponibilidad.html" class="btn btn-outline btn-lg">Ver disponibilidad</a>
+        <a href="#" id="cta-whatsapp" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:1.2em;height:1.2em;vertical-align:middle;margin-right:.4em">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.14 1.537 5.878L.057 23.58a.5.5 0 00.614.614l5.702-1.48A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 01-5.003-1.374l-.357-.213-3.708.962.983-3.594-.233-.369A9.818 9.818 0 012.182 12C2.182 6.562 6.562 2.182 12 2.182S21.818 6.562 21.818 12 17.438 21.818 12 21.818z"/>
+          </svg>
+          WhatsApp
+        </a>
+        <a href="#" id="cta-email" class="btn btn-outline btn-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:1.2em;height:1.2em;vertical-align:middle;margin-right:.4em">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+          Correo
+        </a>
       </div>
     </div>
   </section>

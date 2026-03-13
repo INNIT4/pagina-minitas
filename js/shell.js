@@ -21,20 +21,28 @@ function injectNavbar() {
   nav.innerHTML = `
     <div class="navbar-inner">
       <a href="index.html" class="nav-logo">
-        <img id="nav-logo-img" src="assets/logo.svg" alt="Logo" onerror="this.hidden=true">
-        <span class="nav-logo-text" id="nav-brand-name">Salón</span>
+        <picture>
+          <source srcset="assets/logo.webp" type="image/webp">
+          <img id="nav-logo-img" src="assets/logo.jpg" alt="Logo" width="48" height="48" fetchpriority="high" onerror="this.hidden=true">
+        </picture>
+        <span class="nav-logo-text" id="nav-brand-name">El Marqués</span>
       </a>
       <ul class="nav-links" role="list">
         <li><a href="nosotros.html" class="nav-link ${isActive('nosotros')}">Nosotros</a></li>
         <li class="nav-item">
-          <a href="eventos.html" class="nav-link ${isActive('eventos')}">Eventos &#9662;</a>
-          <ul class="nav-dropdown" id="nav-eventos" role="list"></ul>
-        </li>
-        <li class="nav-item">
           <a href="espacios.html" class="nav-link ${isActive('espacios')}">Espacios &#9662;</a>
           <ul class="nav-dropdown" id="nav-espacios" role="list"></ul>
         </li>
-        <li><a href="galeria.html" class="nav-link ${isActive('galeria')}">Galería</a></li>
+        <li class="nav-item">
+          <a href="galeria.html" class="nav-link ${isActive('galeria')}">Eventos &#9662;</a>
+          <ul class="nav-dropdown" role="list">
+            <li><a href="galeria.html#bodas">💍 Bodas</a></li>
+            <li><a href="galeria.html#xv">👑 XV Años</a></li>
+            <li><a href="galeria.html#bautizos">✨ Bautizos</a></li>
+            <li><a href="galeria.html#empresariales">🏢 Empresariales</a></li>
+            <li><a href="galeria.html">Ver todos</a></li>
+          </ul>
+        </li>
         <li><a href="disponibilidad.html" class="nav-link ${isActive('disponibilidad')}">Disponibilidad</a></li>
         <li><a href="contacto.html" class="nav-link nav-cta">Cotizar</a></li>
       </ul>
@@ -58,15 +66,17 @@ function buildMobileNavHTML() {
   const c = CLIENT_CONFIG;
   let html = `
     <a href="nosotros.html" class="nav-mobile-link">Nosotros</a>
-    <a href="galeria.html" class="nav-mobile-link">Galería</a>
+    <div class="nav-mobile-group">
+      <div class="nav-mobile-group-title">Eventos</div>
+      <a href="galeria.html#bodas">💍 Bodas</a>
+      <a href="galeria.html#xv">👑 XV Años</a>
+      <a href="galeria.html#bautizos">✨ Bautizos</a>
+      <a href="galeria.html#empresariales">🏢 Empresariales</a>
+      <a href="galeria.html">Ver todos</a>
+    </div>
     <a href="disponibilidad.html" class="nav-mobile-link">Disponibilidad</a>
   `;
-  if (c.nav_eventos?.length) {
-    html += `<div class="nav-mobile-group">
-      <div class="nav-mobile-group-title">Eventos</div>
-      ${c.nav_eventos.map(e => `<a href="eventos.html#${e}">${formatLabel(e)}</a>`).join('')}
-    </div>`;
-  }
+
   if (c.nav_espacios?.length) {
     html += `<div class="nav-mobile-group">
       <div class="nav-mobile-group-title">Espacios</div>

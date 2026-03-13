@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cotizar</title>
+  <title>Cotiza tu Evento – El Marqués | Hermosillo, Sonora</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://salon-primavera.firebaseapp.com">
+  <link rel="preconnect" href="https://firestore.googleapis.com">
+  <link rel="preconnect" href="https://www.googleapis.com">
+  <link rel="preconnect" href="https://apis.google.com">
+  <link rel="preload" as="image" href="assets/logo.webp" type="image/webp">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -58,6 +65,8 @@
         </div>
 
         <form class="quote-form reveal" id="quote-form" novalidate>
+
+          <!-- Fila 1: Nombre + Teléfono -->
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="q-nombre">Nombre completo *</label>
@@ -66,43 +75,97 @@
               <span class="form-error" id="err-nombre">Ingresa tu nombre</span>
             </div>
             <div class="form-group">
-              <label class="form-label" for="q-telefono">Teléfono *</label>
+              <label class="form-label" for="q-telefono">Teléfono / WhatsApp *</label>
               <input class="form-control" type="tel" id="q-telefono" name="telefono"
                      placeholder="662 000 0000" required autocomplete="tel">
               <span class="form-error" id="err-telefono">Ingresa tu teléfono</span>
             </div>
           </div>
+
+          <!-- Fila 2: Email -->
+          <div class="form-group">
+            <label class="form-label" for="q-email">Correo electrónico</label>
+            <input class="form-control" type="email" id="q-email" name="email"
+                   placeholder="ejemplo@correo.com" autocomplete="email">
+            <span class="form-error" id="err-email">Ingresa un correo válido</span>
+          </div>
+
+          <!-- Fila 3: Tipo de evento + Paquete -->
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="q-tipo">Tipo de evento *</label>
               <select class="form-control" id="q-tipo" name="tipo_evento" required>
                 <option value="">Selecciona...</option>
-                <option value="boda">Boda</option>
-                <option value="xv">XV Años</option>
-                <option value="bautizo">Bautizo</option>
-                <option value="empresarial">Evento empresarial</option>
-                <option value="cumpleanos">Cumpleaños</option>
-                <option value="otro">Otro</option>
+                <option value="Boda">💍 Boda</option>
+                <option value="XV Años">👑 XV Años</option>
+                <option value="Bautizo">🕊️ Bautizo</option>
+                <option value="Cumpleaños">🎂 Cumpleaños</option>
+                <option value="Evento empresarial">💼 Evento empresarial</option>
+                <option value="Graduación">🎓 Graduación</option>
+                <option value="Aniversario">💐 Aniversario</option>
+                <option value="Otro">Otro</option>
               </select>
               <span class="form-error" id="err-tipo">Selecciona el tipo de evento</span>
             </div>
+            <div class="form-group">
+              <label class="form-label" for="q-paquete">Paquete de interés</label>
+              <select class="form-control" id="q-paquete" name="paquete">
+                <option value="">No sé aún</option>
+                <option value="Clásico ($200/persona)">Clásico — desde $200/persona</option>
+                <option value="Premier ($248/persona)">Premier — desde $248/persona</option>
+                <option value="Marqués ($295/persona)">Marqués — hasta $295/persona</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Fila 4: Fecha + Horario -->
+          <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="q-fecha">Fecha tentativa *</label>
               <input class="form-control" type="date" id="q-fecha" name="fecha" required>
               <span class="form-error" id="err-fecha">Selecciona una fecha</span>
             </div>
+            <div class="form-group">
+              <label class="form-label" for="q-horario">Horario del evento</label>
+              <select class="form-control" id="q-horario" name="horario">
+                <option value="">Selecciona...</option>
+                <option value="Tarde (2:00 PM – 8:00 PM)">Tarde (2:00 PM – 8:00 PM)</option>
+                <option value="Noche (7:00 PM – 2:00 AM)">Noche (7:00 PM – 2:00 AM)</option>
+                <option value="Día completo">Día completo</option>
+              </select>
+            </div>
           </div>
+
+          <!-- Fila 5: Personas + ¿Cómo nos conociste? -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="q-personas">Número de invitados *</label>
+              <input class="form-control" type="number" id="q-personas" name="personas"
+                     placeholder="Ej: 150" min="100" max="600" required>
+              <span class="form-error" id="err-personas">Mínimo 100 invitados</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="q-referencia">¿Cómo nos conociste?</label>
+              <select class="form-control" id="q-referencia" name="referencia">
+                <option value="">Selecciona...</option>
+                <option value="Instagram">Instagram</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Recomendación">Recomendación de un amigo</option>
+                <option value="Google">Google</option>
+                <option value="Pasé por el lugar">Pasé por el lugar</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Mensaje -->
           <div class="form-group">
-            <label class="form-label" for="q-personas">Número de personas *</label>
-            <input class="form-control" type="number" id="q-personas" name="personas"
-                   placeholder="Ej: 150" min="1" max="2000" required>
-            <span class="form-error" id="err-personas">Ingresa el número de personas</span>
+            <label class="form-label" for="q-mensaje">Cuéntanos sobre tu evento</label>
+            <textarea class="form-control" id="q-mensaje" name="mensaje" rows="4"
+                      placeholder="Describe tu visión: decoración, temática, necesidades especiales, presupuesto aproximado..."></textarea>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="q-mensaje">Mensaje adicional</label>
-            <textarea class="form-control" id="q-mensaje" name="mensaje" rows="3"
-                      placeholder="Cuéntanos más sobre tu evento..."></textarea>
-          </div>
+
+          <!-- Botones -->
           <div class="form-actions">
             <button type="button" class="btn btn-whatsapp" id="btn-whatsapp-quote">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -118,6 +181,11 @@
               Enviar por Email
             </button>
           </div>
+
+          <p style="font-size:.8rem;color:var(--color-text-muted);text-align:center;margin-top:.75rem">
+            Te responderemos en menos de 24 horas · Capacidad 100–600 invitados
+          </p>
+
         </form>
       </div>
     </div>

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/admin/">
   <title>Panel Admin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -41,10 +42,7 @@
         <span class="sidebar-logo" id="sidebar-salon-name">Admin</span>
       </div>
       <nav class="sidebar-nav">
-        <button class="sidebar-link active" data-section="cotizaciones">
-          <span class="sidebar-icon">📋</span> Cotizaciones
-        </button>
-        <button class="sidebar-link" data-section="calendario">
+        <button class="sidebar-link active" data-section="calendario">
           <span class="sidebar-icon">📅</span> Calendario
         </button>
         <button class="sidebar-link" data-section="textos">
@@ -52,6 +50,15 @@
         </button>
         <button class="sidebar-link" data-section="galeria">
           <span class="sidebar-icon">🖼️</span> Galería
+        </button>
+        <button class="sidebar-link" data-section="testimonios">
+          <span class="sidebar-icon">⭐</span> Testimonios
+        </button>
+        <button class="sidebar-link" data-section="faq">
+          <span class="sidebar-icon">❓</span> Preguntas frecuentes
+        </button>
+        <button class="sidebar-link" data-section="paquetes">
+          <span class="sidebar-icon">💰</span> Paquetes
         </button>
       </nav>
       <div class="sidebar-footer">
@@ -68,19 +75,6 @@
           <span id="topbar-email"></span>
         </div>
       </header>
-
-      <!-- Sección: Cotizaciones -->
-      <section id="section-cotizaciones" class="admin-section">
-        <div class="section-toolbar">
-          <div class="toolbar-filters">
-            <button class="filter-btn active" data-filter="all">Todas</button>
-            <button class="filter-btn" data-filter="unread">Sin leer</button>
-          </div>
-        </div>
-        <div class="cotizaciones-list" id="cotizaciones-list">
-          <div class="empty-state">Cargando cotizaciones...</div>
-        </div>
-      </section>
 
       <!-- Sección: Calendario -->
       <section id="section-calendario" class="admin-section" hidden>
@@ -151,12 +145,17 @@
           </div>
           <div class="a-form-group" style="margin-top:1rem">
             <label class="a-label" for="upload-categoria">Categoría</label>
-            <select class="a-input" id="upload-categoria">
-              <option value="bodas">Bodas</option>
-              <option value="xv">XV Años</option>
-              <option value="bautizos">Bautizos</option>
-              <option value="empresariales">Empresariales</option>
-            </select>
+            <div style="display:flex;gap:.5rem">
+              <select class="a-input" id="upload-categoria" style="flex:1"></select>
+              <button type="button" class="a-btn" id="btn-add-categoria" title="Nueva categoría"
+                      style="padding:.5rem .85rem;font-size:1.2rem;line-height:1">+</button>
+            </div>
+            <div id="nueva-categoria-wrap" hidden style="margin-top:.5rem;display:flex;gap:.5rem">
+              <input class="a-input" type="text" id="nueva-categoria-input"
+                     placeholder="Nombre de categoría" style="flex:1">
+              <button type="button" class="a-btn a-btn-primary" id="btn-confirmar-categoria">Agregar</button>
+              <button type="button" class="a-btn" id="btn-cancelar-categoria">✕</button>
+            </div>
           </div>
           <button class="a-btn a-btn-primary" id="btn-upload" disabled>Subir fotos</button>
           <div class="upload-progress" id="upload-progress" hidden>
@@ -166,6 +165,67 @@
         </div>
         <div class="gallery-admin-grid" id="gallery-admin-grid">
           <div class="empty-state">Cargando galería...</div>
+        </div>
+      </section>
+      <!-- Sección: Testimonios -->
+      <section id="section-testimonios" class="admin-section" hidden>
+        <div class="a-card">
+          <h2 class="a-card-title">Agregar testimonio</h2>
+          <form id="form-add-testimonio">
+            <div class="a-form-group">
+              <label class="a-label" for="t-nombre">Nombre</label>
+              <input class="a-input" type="text" id="t-nombre" placeholder="Ana García" required>
+            </div>
+            <div class="a-form-group">
+              <label class="a-label" for="t-evento">Tipo de evento</label>
+              <input class="a-input" type="text" id="t-evento" placeholder="Boda, XV años, etc.">
+            </div>
+            <div class="a-form-group">
+              <label class="a-label" for="t-texto">Reseña</label>
+              <textarea class="a-input a-textarea" id="t-texto" rows="3" placeholder="Excelente servicio..." required></textarea>
+            </div>
+            <div class="a-form-group">
+              <label class="a-label" for="t-estrellas">Estrellas</label>
+              <select class="a-input" id="t-estrellas">
+                <option value="5">★★★★★ (5)</option>
+                <option value="4">★★★★☆ (4)</option>
+                <option value="3">★★★☆☆ (3)</option>
+                <option value="2">★★☆☆☆ (2)</option>
+                <option value="1">★☆☆☆☆ (1)</option>
+              </select>
+            </div>
+            <button type="submit" class="a-btn a-btn-primary" id="btn-add-testimonio">Agregar</button>
+          </form>
+        </div>
+        <div id="testimonios-admin-list"></div>
+      </section>
+
+      <!-- Sección: FAQ -->
+      <section id="section-faq" class="admin-section" hidden>
+        <div class="a-card">
+          <h2 class="a-card-title">Agregar pregunta</h2>
+          <form id="form-add-faq">
+            <div class="a-form-group">
+              <label class="a-label" for="f-pregunta">Pregunta</label>
+              <input class="a-input" type="text" id="f-pregunta" placeholder="¿Cuál es el aforo máximo?" required>
+            </div>
+            <div class="a-form-group">
+              <label class="a-label" for="f-respuesta">Respuesta</label>
+              <textarea class="a-input a-textarea" id="f-respuesta" rows="3" placeholder="Nuestra capacidad es..." required></textarea>
+            </div>
+            <button type="submit" class="a-btn a-btn-primary" id="btn-add-faq">Agregar</button>
+          </form>
+        </div>
+        <div id="faq-admin-list"></div>
+      </section>
+
+      <!-- Sección: Paquetes -->
+      <section id="section-paquetes" class="admin-section" hidden>
+        <div id="paquetes-admin-wrap"></div>
+        <div style="margin-top:1.5rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+          <button class="a-btn" id="btn-add-paquete">+ Agregar paquete</button>
+          <button class="a-btn a-btn-primary" id="btn-save-paquetes">Guardar cambios</button>
+          <span class="save-status" id="save-paquetes-status"></span>
         </div>
       </section>
     </main>
