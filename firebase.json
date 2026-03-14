@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "target": "elmarques",
+    "target": "minitas",
     "public": ".",
     "cleanUrls": true,
     "trailingSlash": false,

@@ -1,38 +1,38 @@
 export const CLIENT_CONFIG = {
   // Identidad
-  nombre: "El Marqués",
-  tagline: "Elegancia y distinción para cada celebración",
+  nombre: "Hacienda Las Minitas",
+  tagline: "El jardín perfecto para tu evento soñado en Hermosillo",
   logo: "assets/logo.jpg",
 
   // Contacto (inmutable — solo el developer edita este archivo)
-  telefono: "+52 1 662 508 5924",
-  whatsapp: "5216625085924",
-  email: "elmarqueseventos@hotmail.com",
-  direccion: "Ramón Valdez Ramírez 1004, Unión de Ladrilleros, Hermosillo, Son.",
-  maps_embed_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3512.0!2d-111.0105531!3d29.1249753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86ce8139dbe39b81:0x979223b7f50f4e40!2sEventos+El+Marqu%C3%A9s!5e0!3m2!1ses!2smx!4v1234567890",
+  telefono: "+52 662 184 7562",
+  whatsapp: "526621847562",
+  email: "haciendalasminitas@hotmail.com",
+  direccion: "Calle de los Molinos #97 (Final), Col. Las Minitas, Hermosillo, Son.",
+  maps_embed_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3513.8!2d-110.9902715!3d29.0529134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6392cc3ac7b02379:0x0!2sHacienda+Las+Minitas!5e0!3m2!1ses!2smx!4v1234567890",
 
   // SEO
   seo: {
-    title: "El Marqués – Salón de Eventos en Hermosillo, Sonora",
-    description: "Bodas, XV años, bautizos y eventos empresariales en Hermosillo, Sonora. Capacidad 100–600 invitados. Elegancia y servicio de primera calidad.",
-    keywords: "salon eventos hermosillo, bodas hermosillo sonora, xv años hermosillo, bautizos hermosillo, eventos empresariales hermosillo, el marques eventos",
+    title: "Hacienda Las Minitas – Eventos en Hermosillo, Sonora",
+    description: "Bodas, XV años, bautizos, graduaciones y más en Hermosillo, Sonora. Jardín, hacienda y área de alberca. Capacidad hasta 600 invitados.",
+    keywords: "hacienda las minitas, salon eventos hermosillo, bodas hermosillo sonora, xv años hermosillo, eventos jardin hermosillo, hacienda eventos sonora",
     og_image: "assets/og-image.jpg",
-    url_canonica: "https://www.eventoselmarques.mx",
+    url_canonica: "https://haciendalasminitas.mx",
     local_business_schema: {
       addressLocality: "Hermosillo",
       addressRegion: "Sonora",
-      postalCode: "83131",
-      streetAddress: "Ramón Valdez Ramírez 1004, Unión de Ladrilleros"
+      postalCode: "83285",
+      streetAddress: "Calle de los Molinos #97 (Final), Col. Las Minitas"
     }
   },
 
   // Colores → inyectados como CSS variables en runtime
   colores: {
-    primario: "#8B1A1A",
-    primario_claro: "#A52020",
-    acento: "#C9A84C",
-    fondo: "#FAF8F4",
-    texto: "#1A1A1A"
+    primario:       "#2A4B3C",
+    primario_claro: "#3D6B55",
+    acento:         "#C9A265",
+    fondo:          "#F8F6F2",
+    texto:          "#1A1A1A"
   },
 
   // Hero
@@ -41,50 +41,50 @@ export const CLIENT_CONFIG = {
 
   // Redes sociales (null = no mostrar ícono)
   redes: {
-    facebook: "https://facebook.com/elmarqueseventos",
-    instagram: "https://www.instagram.com/elmarques.eventoshmo",
-    tiktok: null
+    facebook:  "https://www.facebook.com/HaciendaLasMinitas/",
+    instagram: "https://www.instagram.com/hacienda_minitas/",
+    tiktok:    null
   },
 
   // Estructura de navegación
-  nav_eventos: ["bodas", "xv", "bautizos", "empresariales"],
-  nav_espacios: ["salon-principal", "terraza", "area-lounge"],
+  nav_eventos:  ["bodas", "xv", "bautizos", "graduacion", "cumpleanos"],
+  nav_espacios: ["salon-principal", "jardin", "area-alberca"],
+
+  // Mensaje WhatsApp pre-llenado
+  whatsapp_mensaje: "Hola, me interesa cotizar un evento en Hacienda Las Minitas.",
 
   // Capacidad y horario
   capacidad_min: 100,
   capacidad_max: 600,
-  horario_max: "2:00 AM",
-  precio_minimo: 20500,
-
-  // Mensaje WhatsApp pre-llenado
-  whatsapp_mensaje: "Hola, me interesa cotizar un evento en El Marqués.",
+  horario_max:   "12:00 AM",
+  precio_minimo: null,
 
   // Paquetes/precios
   paquetes: [
     {
-      nombre: "Paquete Clásico",
-      precio_por_persona: 200,
+      nombre: "Paquete Jardín",
+      precio_por_persona: 220,
       minimo_personas: 100,
       color: "var(--color-surface-alt)",
       incluye: [
-        "Salón con decoración base",
-        "Menú 3 tiempos (res o pollo)",
+        "Renta del jardín y salón",
+        "Menú 3 tiempos",
         "Agua y refrescos ilimitados",
-        "Pista de baile",
+        "Pista de baile iluminada",
         "Coordinación de evento",
         "Estacionamiento amplio"
       ]
     },
     {
-      nombre: "Paquete Premier",
-      precio_por_persona: 248,
+      nombre: "Paquete Hacienda",
+      precio_por_persona: 270,
       minimo_personas: 150,
       destacado: true,
       color: "var(--color-primary)",
       incluye: [
-        "Todo lo del paquete Clásico",
+        "Todo lo del Paquete Jardín",
         "Decoración premium personalizada",
-        "Menú 4 tiempos (res, pollo o puerco)",
+        "Menú 4 tiempos",
         "Barra iluminada de bebidas",
         "Mesa de snacks",
         "Área lounge",
@@ -92,29 +92,29 @@ export const CLIENT_CONFIG = {
       ]
     },
     {
-      nombre: "Paquete Marqués",
-      precio_por_persona: 295,
+      nombre: "Paquete Exclusivo",
+      precio_por_persona: 320,
       minimo_personas: 200,
       color: "var(--color-surface-alt)",
       incluye: [
-        "Todo lo del paquete Premier",
+        "Todo lo del Paquete Hacienda",
         "Decoración de lujo con flores naturales",
-        "Barra libre completa hasta 2:00 AM",
+        "Barra libre completa",
         "Pastel incluido",
-        "Salas lounge exclusivas",
+        "Acceso al área de alberca",
         "Servicio de valet parking",
         "Fotografía del evento (2 horas)"
       ]
     }
   ],
 
-  // Cloudinary (para subida de fotos sin Firebase Storage)
+  // Cloudinary (para subida de fotos — configurar al activar el plan completo)
   cloudinary: {
-    cloud_name: "dxvmswmpn",
-    upload_preset: "elmarques"
+    cloud_name:    "REEMPLAZA_CLOUD_NAME",
+    upload_preset: "REEMPLAZA_UPLOAD_PRESET"
   },
 
   // Meta
   _template_version: "1.0.0",
-  _cliente_id: "eventos-el-marques"
+  _cliente_id: "hacienda-las-minitas"
 };

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(which cwebp:*)",
+      "Bash(python -c \"\nfrom PIL import Image\nimg = Image.open\\('C:/Users/josei/venue-template/assets/hero-fallback.jpg'\\)\nprint\\(img.size, img.mode, img.format\\)\n\")",
+      "Bash(python -c \"\nimport shutil, os\nshutil.copy\\('C:/Users/josei/venue-template/assets/logo-opt.jpg',\n            'C:/Users/josei/venue-template/assets/logo.jpg'\\)\nos.remove\\('C:/Users/josei/venue-template/assets/logo-opt.jpg'\\)\nprint\\('logo.jpg replaced'\\)\n\")",
+      "Bash(python -c \"\nimport os\nfiles = ['hero-fallback.jpg','hero-fallback.webp','logo.jpg','logo.webp']\nfor f in files:\n    p = f'C:/Users/josei/venue-template/assets/{f}'\n    if os.path.exists\\(p\\):\n        print\\(f'{f}: {os.path.getsize\\(p\\)/1024:.0f} KB'\\)\n\")",
+      "Bash(python -c \"\nimport os\nfiles = ['hero-fallback.jpg','hero-fallback.webp','logo.jpg','logo.webp']\nfor f in files:\n    p = f'C:/Users/josei/venue-template/assets/{f}'\n    print\\(f'{f}: {os.path.getsize\\(p\\)/1024:.0f} KB'\\)\n\")"
+    ]
+  }
+}

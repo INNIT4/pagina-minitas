@@ -1,32 +1,33 @@
 # venue-template — Instrucciones para Claude Code
 
-## Cliente actual: Eventos El Marqués
+## Cliente actual: Hacienda Las Minitas
 
 | Campo | Valor |
 |-------|-------|
-| **Nombre** | Eventos El Marqués |
+| **Nombre** | Hacienda Las Minitas |
 | **Ciudad** | Hermosillo, Sonora |
-| **Dirección** | Ramón Valdez Ramírez 1004, Unión de Ladrilleros, C.P. 83131 |
-| **Teléfono/WhatsApp** | +52 1 662 508 5924 |
-| **Email** | elmarqueseventos@hotmail.com |
-| **Instagram** | @elmarques.eventoshmo |
-| **Facebook** | /elmarqueseventos |
-| **Firebase project** | salon-primavera |
+| **Dirección** | Calle de los Molinos #97 (Final), Col. Las Minitas, C.P. 83285 |
+| **Teléfono/WhatsApp** | +52 662 184 7562 |
+| **Email** | haciendalasminitas@hotmail.com |
+| **Instagram** | @hacienda_minitas |
+| **Facebook** | /HaciendaLasMinitas |
+| **Firebase project** | salon-primavera (hosting compartido, modo estático) |
+| **Hosting site** | minitas |
 | **Capacidad** | 100–600 invitados |
-| **Precios** | $200–$295 MXN por persona (mínimo $20,500) |
-| **Horario máximo** | 2:00 AM |
-| **Colores** | Borgoña `#8B1A1A` + Gold `#C9A84C` |
-| **Logo** | `assets/logo.jpg` (imagen real, fondo borgoña con flor de lis) |
-| **Hero** | `assets/hero-fallback.jpg` (banner rectangular oficial con collage de eventos) |
-| **Coordenadas** | 29.1249753, -111.0105531 |
-| **Maps Place ID** | `0x86ce8139dbe39b81:0x979223b7f50f4e40` |
+| **Precios** | No publicados (paquetes demo: $220–$320 MXN/persona) |
+| **Horario máximo** | 12:00 AM (no especificado, sujeto a contrato) |
+| **Colores** | Verde `#2A4B3C` + Dorado `#C9A265` |
+| **Logo** | `assets/logo.jpg` (pendiente — descargar de Instagram/Facebook) |
+| **Hero** | `assets/hero-fallback.jpg` (pendiente — usar foto de jardín/alberca de Instagram) |
+| **Coordenadas** | 29.0529134, -110.9902715 |
+| **Maps Place ID** | `0x6392cc3ac7b02379` |
 
-### Paquetes configurados
+### Paquetes configurados (demo — precios referenciales)
 | Paquete | Precio/persona | Mínimo |
 |---------|---------------|--------|
-| Clásico | $200 | 100 personas |
-| Premier | $248 | 150 personas |
-| Marqués | $295 | 200 personas |
+| Jardín | $220 | 100 personas |
+| Hacienda | $270 | 150 personas |
+| Exclusivo | $320 | 200 personas |
 
 
 

@@ -5,7 +5,8 @@
   "targets": {
     "salon-primavera": {
       "hosting": {
-        "elmarques": ["salon-primavera"]
+        "elmarques": ["salon-primavera"],
+        "minitas":   ["minitas"]
       }
     }
   }
