@@ -15,7 +15,15 @@ function applyColorTokens() {
 function applySEO() {
   const s = CLIENT_CONFIG.seo;
 
-  document.title = s.title;
+  // Si la página tiene data-page-title en el body, genera título específico
+  const pageTitle = document.body?.dataset.pageTitle;
+  if (pageTitle) {
+    const ciudad = s.local_business_schema?.addressLocality || '';
+    const estado = s.local_business_schema?.addressRegion || '';
+    document.title = `${pageTitle} – ${CLIENT_CONFIG.nombre} | ${ciudad}, ${estado}`;
+  } else {
+    document.title = s.title;
+  }
   setMeta('name', 'description', s.description);
   setMeta('name', 'keywords', s.keywords);
 
@@ -55,9 +63,10 @@ function applyLocalBusinessSchema() {
     "email": CLIENT_CONFIG.email,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": CLIENT_CONFIG.direccion,
-      "addressLocality": "Hermosillo",
-      "addressRegion": "Sonora",
+      "streetAddress": CLIENT_CONFIG.seo.local_business_schema.streetAddress,
+      "addressLocality": CLIENT_CONFIG.seo.local_business_schema.addressLocality,
+      "addressRegion": CLIENT_CONFIG.seo.local_business_schema.addressRegion,
+      "postalCode": CLIENT_CONFIG.seo.local_business_schema.postalCode,
       "addressCountry": "MX"
     },
     "image": CLIENT_CONFIG.seo.og_image,
@@ -107,6 +116,60 @@ function applyStaticContent() {
   // Mapa embed
   const mapIframe = document.getElementById('map-iframe');
   if (mapIframe && c.maps_embed_url) mapIframe.src = c.maps_embed_url;
+
+  // ── Inyección genérica data-config ──────────────────────────
+  const schema      = c.seo.local_business_schema;
+  const ciudad      = schema.addressLocality;
+  const estado      = schema.addressRegion;
+  const precioDesde = c.paquetes?.[0]?.precio_por_persona || '';
+  const precioHasta = c.paquetes?.[c.paquetes.length - 1]?.precio_por_persona || '';
+  const igHandle    = (c.redes.instagram || '').split('/').filter(Boolean).pop() || '';
+
+  const configValues = {
+    'nombre':           c.nombre,
+    'ciudad':           ciudad,
+    'estado':           estado,
+    'ciudad-estado':    `${ciudad}, ${estado}`,
+    'capacidad':        `${c.capacidad_min}–${c.capacidad_max}`,
+    'capacidad-rango':  `${c.capacidad_min} a ${c.capacidad_max}`,
+    'horario-max':      c.horario_max,
+    'precio-desde':     `$${precioDesde}`,
+    'precio-rango':     `$${precioDesde} hasta $${precioHasta}`,
+    'instagram-handle': `@${igHandle}`,
+  };
+
+  document.querySelectorAll('[data-config]').forEach(el => {
+    const val = configValues[el.dataset.config];
+    if (val !== undefined) el.textContent = val;
+  });
+
+  // Instagram link
+  const igLink = document.getElementById('instagram-cta-link');
+  if (igLink && c.redes.instagram) igLink.href = c.redes.instagram;
+
+  // CTA summary (index.html)
+  const ctaSummary = document.getElementById('cta-summary');
+  if (ctaSummary) {
+    ctaSummary.textContent = `Menús desde $${precioDesde} por persona · Hasta ${c.capacidad_max} invitados · Hasta las ${c.horario_max} · ${ciudad}, ${estado}.`;
+  }
+
+  // Select de paquetes (contacto.html)
+  const paqueteSelect = document.getElementById('q-paquete');
+  if (paqueteSelect && c.paquetes?.length) {
+    paqueteSelect.innerHTML = '<option value="">No sé aún</option>' +
+      c.paquetes.map(p =>
+        `<option value="${p.nombre} ($${p.precio_por_persona}/persona)">${p.nombre} — desde $${p.precio_por_persona}/persona</option>`
+      ).join('');
+  }
+
+  // Capacidad del input de personas (contacto.html)
+  const personasInput = document.getElementById('q-personas');
+  if (personasInput) {
+    personasInput.min = c.capacidad_min;
+    personasInput.max = c.capacidad_max;
+  }
+  const errPersonas = document.getElementById('err-personas');
+  if (errPersonas) errPersonas.textContent = `Mínimo ${c.capacidad_min} invitados`;
 
   // Footer
   setText('footer-brand-name', c.nombre);

@@ -466,8 +466,11 @@ button {
 .a-day.empty { background: transparent; }
 
 .a-day.past {
-  color: #CCC;
+  background: rgba(0,0,0,0.04);
+  color: #C8C8C8;
   cursor: not-allowed;
+  text-decoration: line-through;
+  opacity: 0.6;
 }
 
 .a-day.available {
@@ -522,6 +525,7 @@ button {
 
 .dot.blocked   { background: var(--a-blocked); }
 .dot.available { background: var(--a-available); }
+.dot.past      { background: #C8C8C8; }
 
 /* ── TEXTOS ──────────────────────────────────────────────────── */
 .textos-form { display: flex; flex-direction: column; gap: 1.25rem; }

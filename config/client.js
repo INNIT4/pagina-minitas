@@ -50,6 +50,12 @@ export const CLIENT_CONFIG = {
   nav_eventos: ["bodas", "xv", "bautizos", "empresariales"],
   nav_espacios: ["salon-principal", "terraza", "area-lounge"],
 
+  // Capacidad y horario
+  capacidad_min: 100,
+  capacidad_max: 600,
+  horario_max: "2:00 AM",
+  precio_minimo: 20500,
+
   // Mensaje WhatsApp pre-llenado
   whatsapp_mensaje: "Hola, me interesa cotizar un evento en El Marqués.",
 

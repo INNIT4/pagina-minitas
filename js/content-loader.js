@@ -15,7 +15,7 @@ const FALLBACK = {
   stats: [
     { valor: 500, sufijo: '+', etiqueta: 'Eventos realizados' },
     { valor: 10,  sufijo: '+', etiqueta: 'Años de experiencia' },
-    { valor: 800, sufijo:  '', etiqueta: 'Invitados máx.' },
+    { valor: 600, sufijo:  '', etiqueta: 'Invitados máx.' },
     { valor: 98,  sufijo: '%', etiqueta: 'Satisfacción' }
   ],
   eventos: CLIENT_CONFIG.nav_eventos.map(id => ({
@@ -25,7 +25,7 @@ const FALLBACK = {
   })),
   espacios: CLIENT_CONFIG.nav_espacios.map(id => ({
     id, nombre: formatLabel(id),
-    capacidad: '200–800 personas',
+    capacidad: '100–600 personas',
     descripcion: 'Espacio elegante y versátil para cualquier tipo de evento.',
     emoji: '🏛️'
   })),
@@ -38,7 +38,7 @@ const FALLBACK = {
     { pregunta: '¿Con cuánta anticipación debo reservar?', respuesta: 'Recomendamos reservar con al menos 3–6 meses de anticipación para fechas populares.' },
     { pregunta: '¿El precio incluye decoración?',          respuesta: 'Tenemos paquetes que incluyen decoración básica. También puedes contratar proveedores asociados.' },
     { pregunta: '¿Puedo traer mi propio catering?',        respuesta: 'Contamos con servicio de catering propio. También trabajamos con proveedores externos previamente aprobados.' },
-    { pregunta: '¿Cuál es la capacidad máxima?',           respuesta: 'Nuestro salón principal tiene capacidad para hasta 800 personas.' },
+    { pregunta: '¿Cuál es la capacidad máxima?',           respuesta: 'Nuestro salón principal tiene capacidad para hasta 600 personas.' },
     { pregunta: '¿Ofrecen estacionamiento?',               respuesta: 'Sí, contamos con amplio estacionamiento gratuito para todos los eventos.' }
   ]
 };

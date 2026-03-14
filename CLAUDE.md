@@ -79,7 +79,7 @@ El sitio siempre funciona con solo `config/client.js` (fallback graceful si Fire
 | `admin/js/admin-cotizaciones.js` | Ver + marcar leídas + botón WhatsApp directo |
 | `admin/js/admin-calendar.js` | Bloquear/desbloquear fechas en Firestore |
 | `admin/js/admin-textos.js` | Editar hero + nosotros en Firestore |
-| `admin/js/admin-galeria.js` | Upload/delete fotos en Firebase Storage + Firestore |
+| `admin/js/admin-galeria.js` | Upload fotos a Cloudinary + guarda URL en Firestore, delete |
 
 ## Onboarding de cliente nuevo
 

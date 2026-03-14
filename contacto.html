@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="css/responsive.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="css/responsive.css"></noscript>
 </head>
-<body>
+<body data-page-title="Cotiza tu Evento">
   <!-- ══ PAGE HERO ════════════════════════════════════════════ -->
   <div class="page-hero">
     <span class="page-hero-label">Contáctanos</span>
@@ -113,9 +113,6 @@
               <label class="form-label" for="q-paquete">Paquete de interés</label>
               <select class="form-control" id="q-paquete" name="paquete">
                 <option value="">No sé aún</option>
-                <option value="Clásico ($200/persona)">Clásico — desde $200/persona</option>
-                <option value="Premier ($248/persona)">Premier — desde $248/persona</option>
-                <option value="Marqués ($295/persona)">Marqués — hasta $295/persona</option>
               </select>
             </div>
           </div>
@@ -185,7 +182,7 @@
           </div>
 
           <p style="font-size:.8rem;color:var(--color-text-muted);text-align:center;margin-top:.75rem">
-            Te responderemos en menos de 24 horas · Capacidad 100–600 invitados
+            Te responderemos en menos de 24 horas · Capacidad <span data-config="capacidad">100–600</span> invitados
           </p>
 
         </form>
