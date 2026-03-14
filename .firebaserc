@@ -1,5 +1,12 @@
 {
   "projects": {
     "default": "salon-primavera"
+  },
+  "targets": {
+    "salon-primavera": {
+      "hosting": {
+        "elmarques": ["salon-primavera"]
+      }
+    }
   }
 }

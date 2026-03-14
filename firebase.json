@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "elmarques",
     "public": ".",
     "cleanUrls": true,
     "trailingSlash": false,
