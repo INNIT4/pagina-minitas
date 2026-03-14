@@ -1,7 +1,7 @@
 export const CLIENT_CONFIG = {
   // Identidad
   nombre: "Hacienda Las Minitas",
-  tagline: "El jardín perfecto para tu evento soñado en Hermosillo",
+  tagline: "Desde 1992, el jardín perfecto para tus momentos más especiales",
   logo: "assets/logo.jpg",
 
   // Contacto (inmutable — solo el developer edita este archivo)
@@ -28,8 +28,8 @@ export const CLIENT_CONFIG = {
 
   // Colores → inyectados como CSS variables en runtime
   colores: {
-    primario:       "#2A4B3C",
-    primario_claro: "#3D6B55",
+    primario:       "#1A6B5E",
+    primario_claro: "#228B7A",
     acento:         "#C9A265",
     fondo:          "#F8F6F2",
     texto:          "#1A1A1A"

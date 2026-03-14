@@ -9,8 +9,8 @@ const FALLBACK = {
     subtexto: 'Creamos experiencias únicas e inolvidables para los momentos más especiales de tu vida.'
   },
   nosotros: {
-    titulo: 'Tu evento, nuestra pasión',
-    texto: 'Con más de una década de experiencia, hemos tenido el honor de ser parte de los momentos más especiales de cientos de familias en Hermosillo y Sonora.'
+    titulo: 'Más de 30 años creando recuerdos',
+    texto: 'Desde 1992, Hacienda Las Minitas ha sido el escenario de los momentos más especiales de cientos de familias en Hermosillo y Sonora. Nuestro jardín, hacienda y área de alberca combinan la calidez de la arquitectura colonial con un servicio personalizado para que cada evento sea único e inolvidable.'
   },
   stats: [
     { valor: 500, sufijo: '+', etiqueta: 'Eventos realizados' },
